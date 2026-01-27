@@ -11,8 +11,8 @@ public class CameraFollow : MonoBehaviour
     public float minPitch = -20f;
     public float maxPitch = 60f;
 
-    float yaw;    // horizontal mouse rotation
-    float pitch;  // vertical mouse rotation
+    float yaw;    // horizontal rotation
+    float pitch;  // vertical rotation
 
     Vector3 smoothVelocity;
 
@@ -33,8 +33,18 @@ public class CameraFollow : MonoBehaviour
         if (!target) return;
 
         // Read mouse input
-        yaw += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+
+        // Read controller right stick
+        float stickX = Input.GetAxis("RightStickX");
+        float stickY = Input.GetAxis("RightStickY");
+
+        // Combine mouse and controller input
+        yaw += (mouseX + stickX) * mouseSensitivity * Time.deltaTime;
+        pitch -= (mouseY + -stickY) * mouseSensitivity * Time.deltaTime;
+
+        // Clamp vertical look
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
         // Convert rotation to world rotation
