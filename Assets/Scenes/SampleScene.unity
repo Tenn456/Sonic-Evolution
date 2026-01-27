@@ -422,15 +422,25 @@ MonoBehaviour:
   boostButton: joystick button 0
   boostMaxSpeed: 40
   boostAcceleration: 80
-  boostDrainPerSecond: 20
+  initialBoostDrain: 4
+  boostDrainPerSecond: 5
   boostMeterMax: 100
-  boostOnlyOnGround: 1
   jumpForce: 20
   lowJumpMultiplier: 50
   fallMultiplier: 2
   gravity: -30
+  spindashKey: 306
+  spindashButton: joystick button 7
+  spindashMinSpeed: 12
+  spindashMaxSpeed: 35
+  spindashChargeRate: 1.5
+  spindashFrictionWhileCharging: 25
+  spindashRollFriction: 8
+  spindashExitSpeed: 8
   turnRateAtLowSpeed: 720
   turnRateAtHighSpeed: 120
+  rollTurnRateAtLowSpeed: 1080
+  rollTurnRateAtHighSpeed: 360
 --- !u!143 &297380153
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1894,15 +1904,25 @@ MonoBehaviour:
   boostButton: joystick button 0
   boostMaxSpeed: 35
   boostAcceleration: 55
+  initialBoostDrain: 20
   boostDrainPerSecond: 30
   boostMeterMax: 100
-  boostOnlyOnGround: 1
   jumpForce: 12
   lowJumpMultiplier: 3
   fallMultiplier: 2
   gravity: -30
+  spindashKey: 306
+  spindashButton: joystick button 6
+  spindashMinSpeed: 12
+  spindashMaxSpeed: 35
+  spindashChargeRate: 1.5
+  spindashFrictionWhileCharging: 25
+  spindashRollFriction: 8
+  spindashExitSpeed: 8
   turnRateAtLowSpeed: 720
   turnRateAtHighSpeed: 120
+  rollTurnRateAtLowSpeed: 1080
+  rollTurnRateAtHighSpeed: 360
 --- !u!136 &770976290
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2498,15 +2518,25 @@ MonoBehaviour:
   boostButton: joystick button 0
   boostMaxSpeed: 35
   boostAcceleration: 55
+  initialBoostDrain: 20
   boostDrainPerSecond: 30
   boostMeterMax: 100
-  boostOnlyOnGround: 1
   jumpForce: 20
   lowJumpMultiplier: 50
   fallMultiplier: 2
   gravity: -30
+  spindashKey: 306
+  spindashButton: joystick button 6
+  spindashMinSpeed: 12
+  spindashMaxSpeed: 35
+  spindashChargeRate: 1.5
+  spindashFrictionWhileCharging: 25
+  spindashRollFriction: 8
+  spindashExitSpeed: 8
   turnRateAtLowSpeed: 720
   turnRateAtHighSpeed: 120
+  rollTurnRateAtLowSpeed: 1080
+  rollTurnRateAtHighSpeed: 360
 --- !u!143 &1213203894
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3071,15 +3101,25 @@ MonoBehaviour:
   boostButton: joystick button 0
   boostMaxSpeed: 35
   boostAcceleration: 55
+  initialBoostDrain: 20
   boostDrainPerSecond: 30
   boostMeterMax: 100
-  boostOnlyOnGround: 1
   jumpForce: 20
   lowJumpMultiplier: 50
   fallMultiplier: 2
   gravity: -30
+  spindashKey: 306
+  spindashButton: joystick button 6
+  spindashMinSpeed: 12
+  spindashMaxSpeed: 35
+  spindashChargeRate: 1.5
+  spindashFrictionWhileCharging: 25
+  spindashRollFriction: 8
+  spindashExitSpeed: 8
   turnRateAtLowSpeed: 720
   turnRateAtHighSpeed: 120
+  rollTurnRateAtLowSpeed: 1080
+  rollTurnRateAtHighSpeed: 360
 --- !u!143 &2032282908
 CharacterController:
   m_ObjectHideFlags: 0
