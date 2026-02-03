@@ -431,16 +431,19 @@ MonoBehaviour:
   gravity: -30
   spindashKey: 306
   spindashButton: joystick button 7
+  unrollKey: 301
+  unrollButton: joystick button 6
   spindashMinSpeed: 12
-  spindashMaxSpeed: 35
+  spindashMaxSpeed: 50
   spindashChargeRate: 1.5
   spindashFrictionWhileCharging: 25
   spindashRollFriction: 8
   spindashExitSpeed: 8
-  turnRateAtLowSpeed: 720
-  turnRateAtHighSpeed: 120
+  turnRateAtLowSpeed: 1080
+  turnRateAtHighSpeed: 360
   rollTurnRateAtLowSpeed: 1080
   rollTurnRateAtHighSpeed: 360
+  boostTurnRate: 200
 --- !u!143 &297380153
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1913,6 +1916,8 @@ MonoBehaviour:
   gravity: -30
   spindashKey: 306
   spindashButton: joystick button 6
+  unrollKey: 301
+  unrollButton: joystick button 6
   spindashMinSpeed: 12
   spindashMaxSpeed: 35
   spindashChargeRate: 1.5
@@ -1923,6 +1928,7 @@ MonoBehaviour:
   turnRateAtHighSpeed: 120
   rollTurnRateAtLowSpeed: 1080
   rollTurnRateAtHighSpeed: 360
+  boostTurnRate: 360
 --- !u!136 &770976290
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2527,6 +2533,8 @@ MonoBehaviour:
   gravity: -30
   spindashKey: 306
   spindashButton: joystick button 6
+  unrollKey: 301
+  unrollButton: joystick button 6
   spindashMinSpeed: 12
   spindashMaxSpeed: 35
   spindashChargeRate: 1.5
@@ -2537,6 +2545,7 @@ MonoBehaviour:
   turnRateAtHighSpeed: 120
   rollTurnRateAtLowSpeed: 1080
   rollTurnRateAtHighSpeed: 360
+  boostTurnRate: 360
 --- !u!143 &1213203894
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3110,6 +3119,8 @@ MonoBehaviour:
   gravity: -30
   spindashKey: 306
   spindashButton: joystick button 6
+  unrollKey: 301
+  unrollButton: joystick button 6
   spindashMinSpeed: 12
   spindashMaxSpeed: 35
   spindashChargeRate: 1.5
@@ -3120,6 +3131,7 @@ MonoBehaviour:
   turnRateAtHighSpeed: 120
   rollTurnRateAtLowSpeed: 1080
   rollTurnRateAtHighSpeed: 360
+  boostTurnRate: 360
 --- !u!143 &2032282908
 CharacterController:
   m_ObjectHideFlags: 0

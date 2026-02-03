@@ -26,7 +26,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 53a44c3183332a041a1fcc41b17ac999, type: 2}
-    m_Threshold: 15
+    m_Threshold: 20
     m_Position: {x: 0, y: 0}
     m_TimeScale: 3
     m_CycleOffset: 0
@@ -820,15 +820,7 @@ BlendTree:
     m_Motion: {fileID: 7400000, guid: f8c8dba872a07f444a8280df0ccfe382, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: Blend
-    m_Mirror: 0
-  - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: f8c8dba872a07f444a8280df0ccfe382, type: 2}
-    m_Threshold: 15
-    m_Position: {x: 0, y: 0}
-    m_TimeScale: 2
+    m_TimeScale: 0.5
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
@@ -836,7 +828,7 @@ BlendTree:
     m_Motion: {fileID: 7400000, guid: f8c8dba872a07f444a8280df0ccfe382, type: 2}
     m_Threshold: 30
     m_Position: {x: 0, y: 0}
-    m_TimeScale: 3
+    m_TimeScale: 2
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
@@ -1070,7 +1062,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SpindashCharge
-  m_Speed: 1
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4822269564050357924}

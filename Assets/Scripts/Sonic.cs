@@ -26,7 +26,9 @@ public class Sonic : MonoBehaviour
 
     [Header("Spindash")]
     public KeyCode spindashKey = KeyCode.LeftControl;     // Keyboard spindash button
-    public string spindashButton = "joystick button 6";  // Controller spindash button
+    public string spindashButton = "joystick button 7";  // Controller spindash button
+    public KeyCode unrollKey = KeyCode.CapsLock;        // Keyboard unroll button 
+    public string unrollButton = "joystick button 6";   // Controller unroll button
 
     public float spindashMinSpeed = 12f;   // Launch speed at minimum charge
     public float spindashMaxSpeed = 35f;   // Launch speed at full charge
@@ -40,9 +42,10 @@ public class Sonic : MonoBehaviour
 
     [Header("Turn Rate Limit (deg/sec)")]
     public float turnRateAtLowSpeed = 720f;   // Degrees per second when slow
-    public float turnRateAtHighSpeed = 120f;  // Degrees per second when fast
+    public float turnRateAtHighSpeed = 720f;  // Degrees per second when fast
     public float rollTurnRateAtLowSpeed = 1080f; // Rolling turn rate when slow
     public float rollTurnRateAtHighSpeed = 360f; // Rolling turn rate when fast
+    public float boostTurnRate = 360f;
 
     private CharacterController controller;
     private Animator animator;
@@ -63,8 +66,7 @@ public class Sonic : MonoBehaviour
     private bool wasBoosting;
 
     // Spindash
-    private bool spindashHeld;            // Is spindash button held?
-    private bool wasSpindashHeld;         // Was it held last frame?
+    private bool wasSpindashHeld;         
     private float spindashCharge01;       // Charge amount (0–1)
     private bool spindashCharging;        // Currently charging spindash
     private bool spindashRolling;         // Currently rolling after spindash
@@ -93,7 +95,7 @@ public class Sonic : MonoBehaviour
         bool boostHeld = Input.GetKey(boostKey) || Input.GetKey(boostButton);
 
         // Spindash input
-        spindashHeld = Input.GetKey(spindashKey) || Input.GetKey(spindashButton);
+        bool spindashHeld = Input.GetKey(spindashKey) || Input.GetKey(spindashButton);
 
 
         bool spindashReleased = !spindashHeld && wasSpindashHeld; // Detect release
@@ -156,6 +158,9 @@ public class Sonic : MonoBehaviour
         float align = (hasInput && hasMomentum) ? Vector3.Dot(momentumDirection, inputDir) : 1f;    // Calculates how aligned the player input direction is with Sonic's current direction
         bool braking = hasInput && hasMomentum && align < -0.2f;                                    // True if player is holding opposite direction
 
+        // Unroll input
+        bool unroll = Input.GetKey(unrollButton) || Input.GetKey(unrollKey);
+
         // Spindash stuff
         if (grounded && spindashHeld)
         {
@@ -175,6 +180,11 @@ public class Sonic : MonoBehaviour
 
             if (animator) animator.SetBool("SpindashCharge", true);
             if (animator) animator.SetBool("Spindash", false);
+        }
+        else if (unroll)
+        {
+            spindashCharging = false;
+            animator.SetBool("SpindashCharge", false);
         }
         else
         {
@@ -227,11 +237,29 @@ public class Sonic : MonoBehaviour
                 }
                 else
                 {
-                    // Choose which turn rates to use (Runnning or Rolling)
-                    float low = spindashRolling ? rollTurnRateAtLowSpeed : turnRateAtLowSpeed;
-                    float high = spindashRolling ? rollTurnRateAtHighSpeed : turnRateAtHighSpeed;
+                    // Setting turn rate (normal, boosting, spindash)
+                    float low = 0;
+                    float high = 0;
 
-                    float maxRefSpeed = (boosting ? boostMaxSpeed : maxSpeed);                                  // Sets refernce speed for current state
+                    if (boosting || spindashRolling)
+                    {
+                        if (boosting)
+                        {
+                            high = boostTurnRate;
+                        }
+                        else if (spindashRolling)
+                        {
+                            low = rollTurnRateAtLowSpeed;
+                            high = rollTurnRateAtHighSpeed;
+                        }
+                    }
+                    else
+                    {
+                        low = turnRateAtLowSpeed;
+                        high = turnRateAtHighSpeed;
+                    }
+
+                        float maxRefSpeed = (boosting ? boostMaxSpeed : maxSpeed);                                  // Sets refernce speed for current state
                     float speed01 = (maxRefSpeed > 0.001f) ? Mathf.Clamp01(currentSpeed / maxRefSpeed) : 0f;    // Normalize speed to 0-1 range
 
                     float turnRateDeg = Mathf.Lerp(low, high, speed01);                                         // Interpolate turn rate based on speed
@@ -250,6 +278,7 @@ public class Sonic : MonoBehaviour
         }
 
         // Speed stuff
+
         // Braking
         if (braking && !spindashCharging && !spindashRolling)
         {
@@ -266,16 +295,25 @@ public class Sonic : MonoBehaviour
         // Spindashing
         else if (spindashRolling)
         {
-            // Apply rolling decceleration
-            currentSpeed -= spindashRollFriction * Time.deltaTime;
-            currentSpeed = Mathf.Max(currentSpeed, 0f);
-
-            // Exit Spindash rolling state when slow enough
-            if (currentSpeed <= spindashExitSpeed)
+            if (unroll)
             {
                 spindashRolling = false;
                 if (animator) animator.SetBool("Spindash", false);
             }
+            else
+            {
+                // Apply rolling decceleration
+                currentSpeed -= spindashRollFriction * Time.deltaTime;
+                currentSpeed = Mathf.Max(currentSpeed, 0f);
+
+                // Exit Spindash rolling state when slow enough
+                if (currentSpeed <= spindashExitSpeed)
+                {
+                    spindashRolling = false;
+                    if (animator) animator.SetBool("Spindash", false);
+                }
+            }
+
         }
         // Running
         else if (hasInput && !spindashCharging)
