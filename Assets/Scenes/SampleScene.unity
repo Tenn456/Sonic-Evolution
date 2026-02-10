@@ -425,6 +425,8 @@ MonoBehaviour:
   initialBoostDrain: 4
   boostDrainPerSecond: 5
   boostMeterMax: 100
+  jumpKey: 32
+  jumpButton: joystick button 1
   jumpForce: 20
   lowJumpMultiplier: 50
   fallMultiplier: 2
@@ -444,6 +446,10 @@ MonoBehaviour:
   rollTurnRateAtLowSpeed: 1080
   rollTurnRateAtHighSpeed: 360
   boostTurnRate: 200
+  stompKey: 99
+  stompButton: joystick button 2
+  stompSpeed: -45
+  stompStickDownForce: -2
 --- !u!143 &297380153
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1495,7 +1501,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1910,6 +1916,8 @@ MonoBehaviour:
   initialBoostDrain: 20
   boostDrainPerSecond: 30
   boostMeterMax: 100
+  jumpKey: 32
+  jumpButton: joystick button 1
   jumpForce: 12
   lowJumpMultiplier: 3
   fallMultiplier: 2
@@ -1929,6 +1937,10 @@ MonoBehaviour:
   rollTurnRateAtLowSpeed: 1080
   rollTurnRateAtHighSpeed: 360
   boostTurnRate: 360
+  stompKey: 99
+  stompButton: joystick button 2
+  stompSpeed: -45
+  stompStickDownForce: -2
 --- !u!136 &770976290
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2527,6 +2539,8 @@ MonoBehaviour:
   initialBoostDrain: 20
   boostDrainPerSecond: 30
   boostMeterMax: 100
+  jumpKey: 32
+  jumpButton: joystick button 1
   jumpForce: 20
   lowJumpMultiplier: 50
   fallMultiplier: 2
@@ -2546,6 +2560,10 @@ MonoBehaviour:
   rollTurnRateAtLowSpeed: 1080
   rollTurnRateAtHighSpeed: 360
   boostTurnRate: 360
+  stompKey: 99
+  stompButton: joystick button 2
+  stompSpeed: -45
+  stompStickDownForce: -2
 --- !u!143 &1213203894
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3113,6 +3131,8 @@ MonoBehaviour:
   initialBoostDrain: 20
   boostDrainPerSecond: 30
   boostMeterMax: 100
+  jumpKey: 32
+  jumpButton: joystick button 1
   jumpForce: 20
   lowJumpMultiplier: 50
   fallMultiplier: 2
@@ -3132,6 +3152,10 @@ MonoBehaviour:
   rollTurnRateAtLowSpeed: 1080
   rollTurnRateAtHighSpeed: 360
   boostTurnRate: 360
+  stompKey: 99
+  stompButton: joystick button 2
+  stompSpeed: -45
+  stompStickDownForce: -2
 --- !u!143 &2032282908
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3350,7 +3374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -416, y: -425}
+  m_AnchoredPosition: {x: -416, y: -435}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2106408180

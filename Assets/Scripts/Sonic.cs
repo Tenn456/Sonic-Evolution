@@ -11,7 +11,7 @@ public class Sonic : MonoBehaviour
 
     [Header("Boost")]
     public KeyCode boostKey = KeyCode.LeftShift; // Keyboard boost key
-    public string boostButton = "joystick button 1"; // Controller boost button
+    public string boostButton = "joystick button 0"; // Controller boost button
     public float boostMaxSpeed = 35f;            // Max speed while boosting
     public float boostAcceleration = 55f;        // Acceleration while boosting
     public float initialBoostDrain = 4f;         // Initial cose of boost
@@ -19,6 +19,8 @@ public class Sonic : MonoBehaviour
     [Range(0f, 100f)] public float boostMeterMax = 100f; // Max boost meter
 
     [Header("Jump Settings")]
+    public KeyCode jumpKey = KeyCode.Space; // Keyboard jump key
+    public string jumpButton = "joystick button 1"; // Controller jump button
     public float jumpForce = 12f;         // Initial upward jump velocity
     public float lowJumpMultiplier = 3f;  // Reduces jump height when releasing jump early
     public float fallMultiplier = 2f;     // Makes falling faster than rising
@@ -47,6 +49,12 @@ public class Sonic : MonoBehaviour
     public float rollTurnRateAtHighSpeed = 360f; // Rolling turn rate when fast
     public float boostTurnRate = 360f;
 
+    [Header("Stomp")]
+    public KeyCode stompKey = KeyCode.C;             // Keyboard stomp button
+    public string stompButton = "joystick button 2"; // Controller stomp button
+    public float stompSpeed = -45f;                  // downward velocity when stomping
+    public float stompStickDownForce = -2f;
+
     private CharacterController controller;
     private Animator animator;
 
@@ -58,7 +66,7 @@ public class Sonic : MonoBehaviour
     // Environment
     private bool grounded;
     private bool hitWall;
-    private bool blockedForward;         // Prevents acceleration when pushing walls
+    private bool blockedForward;
 
     // Boost
     private float boostMeter;            // Current boost meter value
@@ -68,8 +76,11 @@ public class Sonic : MonoBehaviour
     // Spindash
     private bool wasSpindashHeld;         
     private float spindashCharge01;       // Charge amount (0–1)
-    private bool spindashCharging;        // Currently charging spindash
-    private bool spindashRolling;         // Currently rolling after spindash
+    private bool spindashCharging;
+    private bool spindashRolling;
+
+    // Stomp
+    private bool stomping;
 
     // UI
     public float Boost01 => (boostMeterMax <= 0f) ? 0f : (boostMeter / boostMeterMax);
@@ -355,8 +366,8 @@ public class Sonic : MonoBehaviour
         }
 
         // Jump and gravity stuff
-        bool jumpPressed = Input.GetButtonDown("Jump");     // Set in Unity input manager
-        bool jumpHeld = Input.GetButton("Jump");            // Set in Unity input manager
+        bool jumpPressed = Input.GetKeyDown(jumpKey) || Input.GetKeyDown(jumpButton);
+        bool jumpHeld = Input.GetKey(jumpKey) || Input.GetKey(jumpButton);
 
         if (grounded)
         {
@@ -410,6 +421,37 @@ public class Sonic : MonoBehaviour
         // Apply base gravity every frame
         velocity.y += gravity * Time.deltaTime;
 
+        // Stomp Stuff
+        bool stompPressed = (Input.GetKeyDown(stompKey) || Input.GetKeyDown(stompButton));
+
+        // Start stomp only while airborne
+        if (!grounded && stompPressed)
+        {
+            stomping = true;
+
+            // Cancel upward motion immediately and force downward drop
+            velocity.y = stompSpeed;
+
+            // Animation change
+            if (animator)
+            {
+                if (animator.GetBool("Jump"))
+                {
+                    animator.SetBool("Jump", false);
+                }
+
+                animator.SetBool("Stomping", true);
+            }
+
+
+        }
+
+        if (stomping)
+        {
+            // Force a consistent downward velocity (straight down)
+            velocity.y = stompSpeed;
+        }
+
         // Movement
         Vector3 horizontalMove = momentumDirection * currentSpeed;          // Calculate horizontal movement vector
         Vector3 move = (horizontalMove + velocity) * Time.deltaTime;        // Combine horizontal movement and vertical velocity
@@ -418,6 +460,27 @@ public class Sonic : MonoBehaviour
 
         grounded = (flags & CollisionFlags.Below) != 0;
         hitWall = (flags & CollisionFlags.Sides) != 0;
+
+        // Stop Stomping once grounded
+        if (grounded && stomping)
+        {
+            stomping = false;
+
+            // Kill momentum
+            currentSpeed = 0f;
+
+            // Stick to ground after impact
+            if (velocity.y < 0f)
+            {
+                velocity.y = stompStickDownForce;
+            }
+
+            // Animation change
+            if (animator)
+            {
+                animator.SetBool("Stomping", false);
+            }
+        }
 
         // Wall detection
         Vector3 hv = controller.velocity;                                   // Get velocity from CharacterController

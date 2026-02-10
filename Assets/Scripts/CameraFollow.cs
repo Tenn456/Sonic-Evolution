@@ -54,11 +54,7 @@ public class CameraFollow : MonoBehaviour
         Vector3 desiredPosition = target.position + desiredRotation * new Vector3(0, height, -distance);
 
         // Smooth transition between positions
-        transform.position = Vector3.Lerp(
-            transform.position,
-            desiredPosition,
-            rotationSmoothness * Time.deltaTime
-        );
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, rotationSmoothness * Time.deltaTime);
 
         // Look at player
         transform.LookAt(target.position + Vector3.up * 1.5f);
