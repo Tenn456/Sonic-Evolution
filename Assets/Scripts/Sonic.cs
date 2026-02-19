@@ -72,7 +72,7 @@ public class Sonic : MonoBehaviour
     private float boostMeter;            // Current boost meter value
     private bool boosting;
     private bool wasBoosting;
-
+    
     // Spindash
     private bool wasSpindashHeld;         
     private float spindashCharge01;       // Charge amount (0–1)
@@ -106,7 +106,7 @@ public class Sonic : MonoBehaviour
         bool boostHeld = Input.GetKey(boostKey) || Input.GetKey(boostButton);
 
         // Spindash input
-        bool spindashHeld = Input.GetKey(spindashKey) || Input.GetKey(spindashButton);
+        bool spindashHeld = (Input.GetKey(spindashKey) || Input.GetKey(spindashButton)) && !unroll;
 
 
         bool spindashReleased = !spindashHeld && wasSpindashHeld; // Detect release
@@ -127,7 +127,7 @@ public class Sonic : MonoBehaviour
         bool hasInput = inputDir.sqrMagnitude > 0.01f; // Ignore tiny drift
 
         // Boost stuff
-        bool canBoost = boostMeter > 0.01f && grounded && !spindashCharging && !spindashRolling;
+        bool canBoost = boostMeter > 0.01f && grounded && !spindashCharging;
 
         boosting = boostHeld && canBoost;
 
@@ -135,6 +135,11 @@ public class Sonic : MonoBehaviour
 
         if (boostStarted)
         {
+            if (spindashRolling)
+            {
+                spindashRolling = false;
+                if (animator) animator.SetBool("Spindash", false);
+            }
             currentSpeed = Mathf.Max(currentSpeed, boostMaxSpeed);          // Instant boost speed
             boostMeter = Mathf.Max(0f, boostMeter - initialBoostDrain);     // Initial boost meter cost
         }
@@ -189,13 +194,11 @@ public class Sonic : MonoBehaviour
             // Face direction of player input
             momentumDirection = inputDir;
 
-            if (animator) animator.SetBool("SpindashCharge", true);
-            if (animator) animator.SetBool("Spindash", false);
-        }
-        else if (unroll)
-        {
-            spindashCharging = false;
-            animator.SetBool("SpindashCharge", false);
+            if (unroll)
+            {
+                spindashCharging = false;
+                spindashRolling = false;
+            }
         }
         else
         {
@@ -213,25 +216,16 @@ public class Sonic : MonoBehaviour
                 spindashCharging = false;
 
                 spindashCharge01 = 0f;  // Reset charge
-
-                if (animator)
-                {
-                    animator.SetBool("SpindashCharge", false);
-                    animator.SetBool("Spindash", true); // treat this as "rolling"
-                }
             }
             else if (!grounded)
             {
                 // Make sure to not spindash in air
                 spindashCharging = false;
                 spindashCharge01 = 0f;
-
-                if (animator) animator.SetBool("SpindashCharge", false);
             }
             else
             {
                 spindashCharging = false;
-                if (animator) animator.SetBool("SpindashCharge", false);
             }
         }
 
@@ -297,7 +291,7 @@ public class Sonic : MonoBehaviour
             currentSpeed -= brake * Time.deltaTime;
             currentSpeed = Mathf.Max(currentSpeed, 0f);
 
-            // Allow Sonic to turn around (flip) if he is slow enough
+            // Allow Sonic to turn around if he is slow enough
             if (currentSpeed < 1.0f)
             {
                 momentumDirection = inputDir;
@@ -309,7 +303,6 @@ public class Sonic : MonoBehaviour
             if (unroll)
             {
                 spindashRolling = false;
-                if (animator) animator.SetBool("Spindash", false);
             }
             else
             {
@@ -321,7 +314,6 @@ public class Sonic : MonoBehaviour
                 if (currentSpeed <= spindashExitSpeed)
                 {
                     spindashRolling = false;
-                    if (animator) animator.SetBool("Spindash", false);
                 }
             }
 
@@ -343,11 +335,6 @@ public class Sonic : MonoBehaviour
                     currentSpeed -= deceleration * Time.deltaTime;
                     currentSpeed = Mathf.Max(currentSpeed, 0f);
                 }
-            }
-            else
-            {
-                // If pushing into wall, decelerate faster
-                currentSpeed = Mathf.Max(currentSpeed - (deceleration * 2f) * Time.deltaTime, 0f);
             }
         }
         // No Input but still moving
@@ -393,11 +380,6 @@ public class Sonic : MonoBehaviour
                 if (spindashRolling)
                 {
                     spindashRolling = false;
-
-                    if (animator.GetBool("Spindash"))
-                    {
-                        animator.SetBool("Spindash", false);
-                    }
                         
                 }
 
@@ -439,8 +421,6 @@ public class Sonic : MonoBehaviour
                 {
                     animator.SetBool("Jump", false);
                 }
-
-                animator.SetBool("Stomping", true);
             }
 
 
@@ -474,12 +454,6 @@ public class Sonic : MonoBehaviour
             {
                 velocity.y = stompStickDownForce;
             }
-
-            // Animation change
-            if (animator)
-            {
-                animator.SetBool("Stomping", false);
-            }
         }
 
         // Wall detection
@@ -488,10 +462,19 @@ public class Sonic : MonoBehaviour
 
         blockedForward = hitWall && hv.magnitude < currentSpeed * 0.25f;    // If hitting a wall and barely moving forward, consider movement blocked
 
+        if (blockedForward)
+        {
+            // If pushing into wall, kill speed
+            currentSpeed = 0;
+        }
+
         // Animation stuff
         float speed = hv.magnitude;
         animator.SetFloat("Speed", speed, 0.1f, Time.deltaTime);
         animator.SetBool("Grounded", grounded);
         animator.SetBool("Boosting", boosting);
+        animator.SetBool("SpindashCharge", spindashCharging);
+        animator.SetBool("Spindash", spindashRolling);
+        animator.SetBool("Stomping", stomping);
     }
 }
