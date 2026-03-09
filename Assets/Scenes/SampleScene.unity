@@ -392,6 +392,63 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &257087174
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
+      propertyPath: m_Name
+      value: Ring
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177903199981218689, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.063
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177903199981218689, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177903199981218689, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.066408
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177903199981218689, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177903199981218689, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177903199981218689, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177903199981218689, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177903199981218689, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177903199981218689, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177903199981218689, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
 --- !u!1 &297380149 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100192, guid: 367aecdbd350643439eafc6e4d8ea88e, type: 3}
@@ -414,17 +471,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d560b7e1d3e8e4dbc4b0912e1b9bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 30
+  maxSpeed: 50
   acceleration: 7
   deceleration: 5
   brake: 40
   boostKey: 304
   boostButton: joystick button 0
-  boostMaxSpeed: 40
+  boostMaxSpeed: 60
   boostAcceleration: 80
   initialBoostDrain: 4
   boostDrainPerSecond: 5
   boostMeterMax: 100
+  boostCancelSpeed: 10
   jumpKey: 32
   jumpButton: joystick button 1
   jumpForce: 20
@@ -436,9 +494,9 @@ MonoBehaviour:
   unrollKey: 301
   unrollButton: joystick button 6
   spindashMinSpeed: 12
-  spindashMaxSpeed: 50
+  spindashMaxSpeed: 80
   spindashChargeRate: 1.5
-  spindashFrictionWhileCharging: 25
+  spindashFrictionWhileCharging: 30
   spindashRollFriction: 8
   spindashExitSpeed: 8
   turnRateAtLowSpeed: 1080
@@ -450,6 +508,17 @@ MonoBehaviour:
   stompButton: joystick button 2
   stompSpeed: -45
   stompStickDownForce: -2
+  dropDashSpeed: 60
+  quickStepLeftKey: 113
+  quickStepRightKey: 101
+  quickStepLeftButton: joystick button 4
+  quickStepRightButton: joystick button 5
+  hurtKnockbackSpeed: 15
+  hurtUpwardForce: 20
+  hurtInvincibilityTime: 1.5
+  quickStepDistance: 3
+  quickStepDuration: 0.12
+  quickStepCooldown: 0.2
 --- !u!143 &297380153
 CharacterController:
   m_ObjectHideFlags: 0
@@ -475,6 +544,59 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.58, z: 0}
+--- !u!114 &297380155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297380149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 150a0aac04d1b5f44a405600efb7afc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rings: 0
+--- !u!1 &316704422 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f75d990db446ed14c9739ff3ec3e5255, type: 3}
+  m_PrefabInstance: {fileID: 1147837765}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &316704424
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316704422}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.75
+  m_Height: 2.11
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.89, z: 0}
+--- !u!114 &316704426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316704422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6b6e768c6684354faa933bc5698a887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &361435665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1916,6 +2038,7 @@ MonoBehaviour:
   initialBoostDrain: 20
   boostDrainPerSecond: 30
   boostMeterMax: 100
+  boostCancelSpeed: 10
   jumpKey: 32
   jumpButton: joystick button 1
   jumpForce: 12
@@ -1941,6 +2064,17 @@ MonoBehaviour:
   stompButton: joystick button 2
   stompSpeed: -45
   stompStickDownForce: -2
+  dropDashSpeed: 28
+  quickStepLeftKey: 113
+  quickStepRightKey: 101
+  quickStepLeftButton: joystick button 4
+  quickStepRightButton: joystick button 5
+  hurtKnockbackSpeed: 12
+  hurtUpwardForce: 8
+  hurtInvincibilityTime: 1.5
+  quickStepDistance: 3
+  quickStepDuration: 0.12
+  quickStepCooldown: 0.2
 --- !u!136 &770976290
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2511,6 +2645,73 @@ Transform:
   m_Children: []
   m_Father: {fileID: 809926673}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1147837765
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: f75d990db446ed14c9739ff3ec3e5255, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f75d990db446ed14c9739ff3ec3e5255, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f75d990db446ed14c9739ff3ec3e5255, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f75d990db446ed14c9739ff3ec3e5255, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f75d990db446ed14c9739ff3ec3e5255, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f75d990db446ed14c9739ff3ec3e5255, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f75d990db446ed14c9739ff3ec3e5255, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f75d990db446ed14c9739ff3ec3e5255, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f75d990db446ed14c9739ff3ec3e5255, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f75d990db446ed14c9739ff3ec3e5255, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8514201021683507675, guid: f75d990db446ed14c9739ff3ec3e5255, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a4f9441cab5026346a73e97ba5854403, type: 2}
+    - target: {fileID: 919132149155446097, guid: f75d990db446ed14c9739ff3ec3e5255, type: 3}
+      propertyPath: m_Name
+      value: Egg Pawn - Sonic x Shadow Generations
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f75d990db446ed14c9739ff3ec3e5255, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 316704424}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f75d990db446ed14c9739ff3ec3e5255, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 316704426}
+  m_SourcePrefab: {fileID: 100100000, guid: f75d990db446ed14c9739ff3ec3e5255, type: 3}
 --- !u!1 &1213203888 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 747f2378560c8ca49b3bad0cb19dde23, type: 3}
@@ -2539,6 +2740,7 @@ MonoBehaviour:
   initialBoostDrain: 20
   boostDrainPerSecond: 30
   boostMeterMax: 100
+  boostCancelSpeed: 10
   jumpKey: 32
   jumpButton: joystick button 1
   jumpForce: 20
@@ -2564,6 +2766,17 @@ MonoBehaviour:
   stompButton: joystick button 2
   stompSpeed: -45
   stompStickDownForce: -2
+  dropDashSpeed: 28
+  quickStepLeftKey: 113
+  quickStepRightKey: 101
+  quickStepLeftButton: joystick button 4
+  quickStepRightButton: joystick button 5
+  hurtKnockbackSpeed: 12
+  hurtUpwardForce: 8
+  hurtInvincibilityTime: 1.5
+  quickStepDistance: 3
+  quickStepDuration: 0.12
+  quickStepCooldown: 0.2
 --- !u!143 &1213203894
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3131,6 +3344,7 @@ MonoBehaviour:
   initialBoostDrain: 20
   boostDrainPerSecond: 30
   boostMeterMax: 100
+  boostCancelSpeed: 10
   jumpKey: 32
   jumpButton: joystick button 1
   jumpForce: 20
@@ -3156,6 +3370,17 @@ MonoBehaviour:
   stompButton: joystick button 2
   stompSpeed: -45
   stompStickDownForce: -2
+  dropDashSpeed: 28
+  quickStepLeftKey: 113
+  quickStepRightKey: 101
+  quickStepLeftButton: joystick button 4
+  quickStepRightButton: joystick button 5
+  hurtKnockbackSpeed: 12
+  hurtUpwardForce: 8
+  hurtInvincibilityTime: 1.5
+  quickStepDistance: 3
+  quickStepDuration: 0.12
+  quickStepCooldown: 0.2
 --- !u!143 &2032282908
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3250,6 +3475,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100192, guid: 367aecdbd350643439eafc6e4d8ea88e, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 400192, guid: 367aecdbd350643439eafc6e4d8ea88e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -3338,6 +3567,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100192, guid: 367aecdbd350643439eafc6e4d8ea88e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 297380152}
+    - targetCorrespondingSourceObject: {fileID: 100192, guid: 367aecdbd350643439eafc6e4d8ea88e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 297380155}
   m_SourcePrefab: {fileID: 100100000, guid: 367aecdbd350643439eafc6e4d8ea88e, type: 3}
 --- !u!1 &2106408178
 GameObject:
@@ -3922,3 +4154,5 @@ SceneRoots:
   - {fileID: 809926673}
   - {fileID: 497534867}
   - {fileID: 2010256277}
+  - {fileID: 257087174}
+  - {fileID: 1147837765}

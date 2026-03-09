@@ -17,6 +17,7 @@ public class Sonic : MonoBehaviour
     public float initialBoostDrain = 4f;         // Initial cose of boost
     public float boostDrainPerSecond = 5f;      // Boost meter drain per second
     [Range(0f, 100f)] public float boostMeterMax = 100f; // Max boost meter
+    public float boostCancelSpeed = 10f;
 
     [Header("Jump Settings")]
     public KeyCode jumpKey = KeyCode.Space; // Keyboard jump key
@@ -55,6 +56,32 @@ public class Sonic : MonoBehaviour
     public float stompSpeed = -45f;                  // downward velocity when stomping
     public float stompStickDownForce = -2f;
 
+    [Header("Drop Dash")]
+    public float dropDashSpeed = 28f;
+
+    [Header("Quick Step")]
+    public KeyCode quickStepLeftKey = KeyCode.Q;
+    public KeyCode quickStepRightKey = KeyCode.E;
+    public string quickStepLeftButton = "joystick button 4";
+    public string quickStepRightButton = "joystick button 5";
+
+    [Header("Hurt")]
+    public float hurtKnockbackSpeed = 12f;
+    public float hurtUpwardForce = 8f;
+    public float hurtInvincibilityTime = 1.5f;
+
+    private bool hurt;
+    private float invincibilityTimer;
+
+    public float quickStepDistance = 3f;      // how far Sonic shifts sideways
+    public float quickStepDuration = 0.12f;   // how fast the shift happens
+    public float quickStepCooldown = 0.2f;    // delay before next quick step
+
+    private bool quickStepping;
+    private Vector3 quickStepVelocity;
+    private float quickStepTimer;
+    private float quickStepCooldownTimer;
+
     private CharacterController controller;
     private Animator animator;
 
@@ -65,6 +92,7 @@ public class Sonic : MonoBehaviour
 
     // Environment
     private bool grounded;
+    private bool wasGrounded;
     private bool hitWall;
     private bool blockedForward;
 
@@ -72,12 +100,15 @@ public class Sonic : MonoBehaviour
     private float boostMeter;            // Current boost meter value
     private bool boosting;
     private bool wasBoosting;
-    
+    private bool boostNeedsNewPress;
+
     // Spindash
     private bool wasSpindashHeld;         
     private float spindashCharge01;       // Charge amount (0–1)
     private bool spindashCharging;
     private bool spindashRolling;
+    private bool dropDashCharging;
+    private bool spindashNeedsNewPress;
 
     // Stomp
     private bool stomping;
@@ -96,14 +127,36 @@ public class Sonic : MonoBehaviour
 
     void Update()
     {
+        // Remember last frame's ground state
+        wasGrounded = grounded;
+
+        if (quickStepCooldownTimer > 0f)
+        {
+            quickStepCooldownTimer -= Time.deltaTime;
+        }
+
+        if (invincibilityTimer > 0f)
+        {
+            invincibilityTimer -= Time.deltaTime;
+        }
+
+
         // Input stuff
-        float h = Input.GetAxis("Horizontal"); // Left/right input
-        float v = Input.GetAxis("Vertical");   // Forward/back input
+        float h = hurt ? 0f : Input.GetAxis("Horizontal");  // Left/right input
+        float v = hurt ? 0f : Input.GetAxis("Vertical");    // Forward/back input
 
         Vector2 raw = new Vector2(h, v);       // Combine into 2D vector
         float inputStrength = Mathf.Clamp01(raw.magnitude); // Analog strength (0–1)
 
         bool boostHeld = Input.GetKey(boostKey) || Input.GetKey(boostButton);
+
+        if (!boostHeld)
+        {
+            boostNeedsNewPress = false;
+        }
+
+        // Unroll input
+        bool unroll = Input.GetKeyDown(unrollButton) || Input.GetKeyDown(unrollKey);
 
         // Spindash input
         bool spindashHeld = (Input.GetKey(spindashKey) || Input.GetKey(spindashButton)) && !unroll;
@@ -111,6 +164,28 @@ public class Sonic : MonoBehaviour
 
         bool spindashReleased = !spindashHeld && wasSpindashHeld; // Detect release
         wasSpindashHeld = spindashHeld;                           // Store for next frame
+
+        if (!spindashHeld)
+        {
+            spindashNeedsNewPress = false;
+        }
+
+        // Start charging drop dash only while airborne
+        if (!grounded && spindashHeld && !spindashRolling && !spindashCharging)
+        {
+            dropDashCharging = true;
+            spindashNeedsNewPress = true;
+        }
+
+        // If player releases button before landing, cancel drop dash
+        if (!grounded && dropDashCharging && spindashReleased)
+        {
+            dropDashCharging = false;
+        }
+
+        bool quickStepLeftPressed = Input.GetKeyDown(quickStepLeftKey) || Input.GetKeyDown(quickStepLeftButton);
+
+        bool quickStepRightPressed = Input.GetKeyDown(quickStepRightKey) || Input.GetKeyDown(quickStepRightButton);
 
         // Camera stuff
         Vector3 camForward = Camera.main.transform.forward; // Camera forward
@@ -129,7 +204,7 @@ public class Sonic : MonoBehaviour
         // Boost stuff
         bool canBoost = boostMeter > 0.01f && grounded && !spindashCharging;
 
-        boosting = boostHeld && canBoost;
+        boosting = boostHeld && canBoost && !boostNeedsNewPress && !hurt;
 
         bool boostStarted = boosting && !wasBoosting;
 
@@ -138,7 +213,6 @@ public class Sonic : MonoBehaviour
             if (spindashRolling)
             {
                 spindashRolling = false;
-                if (animator) animator.SetBool("Spindash", false);
             }
             currentSpeed = Mathf.Max(currentSpeed, boostMaxSpeed);          // Instant boost speed
             boostMeter = Mathf.Max(0f, boostMeter - initialBoostDrain);     // Initial boost meter cost
@@ -174,11 +248,8 @@ public class Sonic : MonoBehaviour
         float align = (hasInput && hasMomentum) ? Vector3.Dot(momentumDirection, inputDir) : 1f;    // Calculates how aligned the player input direction is with Sonic's current direction
         bool braking = hasInput && hasMomentum && align < -0.2f;                                    // True if player is holding opposite direction
 
-        // Unroll input
-        bool unroll = Input.GetKey(unrollButton) || Input.GetKey(unrollKey);
-
         // Spindash stuff
-        if (grounded && spindashHeld)
+        if (grounded && spindashHeld && !spindashNeedsNewPress && !hurt)
         {
             // Set states
             spindashCharging = true;
@@ -193,12 +264,6 @@ public class Sonic : MonoBehaviour
 
             // Face direction of player input
             momentumDirection = inputDir;
-
-            if (unroll)
-            {
-                spindashCharging = false;
-                spindashRolling = false;
-            }
         }
         else
         {
@@ -264,7 +329,7 @@ public class Sonic : MonoBehaviour
                         high = turnRateAtHighSpeed;
                     }
 
-                        float maxRefSpeed = (boosting ? boostMaxSpeed : maxSpeed);                                  // Sets refernce speed for current state
+                    float maxRefSpeed = (boosting ? boostMaxSpeed : maxSpeed);                                  // Sets refernce speed for current state
                     float speed01 = (maxRefSpeed > 0.001f) ? Mathf.Clamp01(currentSpeed / maxRefSpeed) : 0f;    // Normalize speed to 0-1 range
 
                     float turnRateDeg = Mathf.Lerp(low, high, speed01);                                         // Interpolate turn rate based on speed
@@ -291,6 +356,12 @@ public class Sonic : MonoBehaviour
             currentSpeed -= brake * Time.deltaTime;
             currentSpeed = Mathf.Max(currentSpeed, 0f);
 
+            // Stops boosting
+            if (boosting)
+            {
+                boosting = false;
+            }
+
             // Allow Sonic to turn around if he is slow enough
             if (currentSpeed < 1.0f)
             {
@@ -300,21 +371,14 @@ public class Sonic : MonoBehaviour
         // Spindashing
         else if (spindashRolling)
         {
-            if (unroll)
+            // Apply rolling decceleration
+            currentSpeed -= spindashRollFriction * Time.deltaTime;
+            currentSpeed = Mathf.Max(currentSpeed, 0f);
+
+            // Exit Spindash rolling state when slow enough
+            if (currentSpeed <= spindashExitSpeed)
             {
                 spindashRolling = false;
-            }
-            else
-            {
-                // Apply rolling decceleration
-                currentSpeed -= spindashRollFriction * Time.deltaTime;
-                currentSpeed = Mathf.Max(currentSpeed, 0f);
-
-                // Exit Spindash rolling state when slow enough
-                if (currentSpeed <= spindashExitSpeed)
-                {
-                    spindashRolling = false;
-                }
             }
 
         }
@@ -352,6 +416,43 @@ public class Sonic : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 10f * Time.deltaTime);     // Smoothly rotate toward that direction
         }
 
+        // Start quick step
+        if (!quickStepping && quickStepCooldownTimer <= 0f && grounded && !spindashCharging && !spindashRolling && currentSpeed > 10f)
+        {
+            if (quickStepLeftPressed)
+            {
+                quickStepping = true;
+                quickStepTimer = quickStepDuration;
+                quickStepCooldownTimer = quickStepCooldown;
+
+                // Move left relative to Sonic's facing direction
+                quickStepVelocity = -transform.right * (quickStepDistance / quickStepDuration);
+            }
+            else if (quickStepRightPressed)
+            {
+                quickStepping = true;
+                quickStepTimer = quickStepDuration;
+                quickStepCooldownTimer = quickStepCooldown;
+
+                // Move right relative to Sonic's facing direction
+                quickStepVelocity = transform.right * (quickStepDistance / quickStepDuration);
+            }
+        }
+
+        Vector3 quickStepMove = Vector3.zero;
+
+        if (quickStepping)
+        {
+            quickStepMove = quickStepVelocity;
+
+            quickStepTimer -= Time.deltaTime;
+            if (quickStepTimer <= 0f)
+            {
+                quickStepping = false;
+                quickStepVelocity = Vector3.zero;
+            }
+        }
+
         // Jump and gravity stuff
         bool jumpPressed = Input.GetKeyDown(jumpKey) || Input.GetKeyDown(jumpButton);
         bool jumpHeld = Input.GetKey(jumpKey) || Input.GetKey(jumpButton);
@@ -370,7 +471,7 @@ public class Sonic : MonoBehaviour
                 velocity.y = -2f;
             }
 
-            if (jumpPressed)
+            if (jumpPressed && !hurt)
             {
                 // Apply jump force
                 velocity.y = jumpForce;
@@ -383,6 +484,18 @@ public class Sonic : MonoBehaviour
                         
                 }
 
+            }
+
+            if (unroll)
+            {
+                if (spindashRolling)
+                {
+                    spindashRolling = false;
+                }
+                else
+                {
+                    spindashRolling = true;
+                }
             }
         }
         else
@@ -407,7 +520,7 @@ public class Sonic : MonoBehaviour
         bool stompPressed = (Input.GetKeyDown(stompKey) || Input.GetKeyDown(stompButton));
 
         // Start stomp only while airborne
-        if (!grounded && stompPressed)
+        if (!grounded && stompPressed && !hurt)
         {
             stomping = true;
 
@@ -433,13 +546,39 @@ public class Sonic : MonoBehaviour
         }
 
         // Movement
-        Vector3 horizontalMove = momentumDirection * currentSpeed;          // Calculate horizontal movement vector
-        Vector3 move = (horizontalMove + velocity) * Time.deltaTime;        // Combine horizontal movement and vertical velocity
+        Vector3 horizontalMove = momentumDirection * currentSpeed;                          // Calculate horizontal movement vector
+        Vector3 move = (horizontalMove + quickStepMove + velocity) * Time.deltaTime;        // Combine horizontal movement and vertical velocity
 
         CollisionFlags flags = controller.Move(move);                       // Move the CharacterController and get collision info
 
         grounded = (flags & CollisionFlags.Below) != 0;
         hitWall = (flags & CollisionFlags.Sides) != 0;
+
+        // If Sonic was launched by enemy and just landed, stop all movement
+        if (hurt && grounded)
+        {
+            currentSpeed = 0f;
+            velocity.y = -2f;
+            hurt = false;
+        }
+
+        if (grounded && !wasGrounded && dropDashCharging)
+        {
+            // Launch in the direction Sonic is facing
+            momentumDirection = transform.forward;
+
+            // Apply constant drop dash speed
+            currentSpeed = Mathf.Max(currentSpeed, dropDashSpeed);
+
+            // Exit drop dash state
+            dropDashCharging = false;
+
+            // Keep this true so holding the button does NOT start a grounded spindash
+            spindashNeedsNewPress = true;
+
+            // Enter roll state
+            spindashRolling = true;
+        }
 
         // Stop Stomping once grounded
         if (grounded && stomping)
@@ -468,13 +607,69 @@ public class Sonic : MonoBehaviour
             currentSpeed = 0;
         }
 
-        // Animation stuff
+        float turnAmount = 0f;
+
+        if (hasInput && momentumDirection.sqrMagnitude > 0.001f && currentSpeed > 1f)
+        {
+            turnAmount = Vector3.Dot(transform.right, inputDir);
+            turnAmount = Mathf.Clamp(turnAmount, -1f, 1f);
+        }
+
+        animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
+
+        // Smoothly send to Animator
+        animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
+
+
+
         float speed = hv.magnitude;
+
+        // Force stop boost if Sonic slows down too much
+        if (boosting && speed < boostCancelSpeed)
+        {
+            boosting = false;
+            wasBoosting = false;
+            boostNeedsNewPress = true;
+        }
+
+        // Animation stuff
         animator.SetFloat("Speed", speed, 0.1f, Time.deltaTime);
         animator.SetBool("Grounded", grounded);
         animator.SetBool("Boosting", boosting);
-        animator.SetBool("SpindashCharge", spindashCharging);
+        animator.SetBool("SpindashCharge", spindashCharging || dropDashCharging);
         animator.SetBool("Spindash", spindashRolling);
         animator.SetBool("Stomping", stomping);
+    }
+
+    public void TakeDamage(Vector3 enemyPosition)
+    {
+        if (invincibilityTimer > 0f)
+            return;
+
+        RingCounter ringCounter = GetComponent<RingCounter>();
+        if (ringCounter != null)
+        {
+            ringCounter.LoseAllRings();
+        }
+
+        hurt = true;
+        invincibilityTimer = hurtInvincibilityTime;
+
+        // Knockback direction away from enemy
+        Vector3 knockDir = (transform.position - enemyPosition).normalized;
+        knockDir.y = 0f;
+
+        if (knockDir.sqrMagnitude < 0.001f)
+            knockDir = -transform.forward;
+
+        // Apply horizontal knockback
+        momentumDirection = knockDir;
+        currentSpeed = hurtKnockbackSpeed;
+
+        // Apply upward pop
+        velocity.y = hurtUpwardForce;
+
+        //if (animator)
+            //animator.SetTrigger("Hurt");
     }
 }
