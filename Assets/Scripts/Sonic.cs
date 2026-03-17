@@ -65,17 +65,42 @@ public class Sonic : MonoBehaviour
     public string quickStepLeftButton = "joystick button 4";
     public string quickStepRightButton = "joystick button 5";
 
+    public float quickStepDistance = 3f;      // how far Sonic shifts sideways
+    public float quickStepDuration = 0.12f;   // how fast the shift happens
+    public float quickStepCooldown = 0.2f;    // delay before next quick step
+
+    [Header("Homing Attack")]
+    public float homingRange = 12f;
+    public float homingRadius = 6f;
+    public float homingSpeed = 35f;
+    public float homingHitDistance = 1.5f;
+    public LayerMask homingTargetMask;
+    public float homingForwardDot = 0.2f;   // how far in front target must be
+    //public KeyCode homingAttackKey = KeyCode.Space;
+    //public string homingAttackButton = "joystick button 0";
+
+    private bool homingAttackUsed;
+    private bool homingAttacking;
+    public Transform homingTarget;
+    public Transform CurrentHomingTarget => homingTarget;
+
     [Header("Hurt")]
     public float hurtKnockbackSpeed = 12f;
     public float hurtUpwardForce = 8f;
     public float hurtInvincibilityTime = 1.5f;
 
+    [Header("Ground Check")]
+    public LayerMask groundMask;
+    public float groundCheckRadius = 0.3f;
+    public float groundCheckDistance = 0.25f;
+    public float groundCheckOffset = 0.1f;
+
+    private bool grounded;
+
     private bool hurt;
     private float invincibilityTimer;
-
-    public float quickStepDistance = 3f;      // how far Sonic shifts sideways
-    public float quickStepDuration = 0.12f;   // how fast the shift happens
-    public float quickStepCooldown = 0.2f;    // delay before next quick step
+    private bool hurtFaceEnemy;
+    private Vector3 hurtEnemyPosition;
 
     private bool quickStepping;
     private Vector3 quickStepVelocity;
@@ -91,7 +116,7 @@ public class Sonic : MonoBehaviour
     private Vector3 momentumDirection;   // Direction Sonic is moving
 
     // Environment
-    private bool grounded;
+    //private bool grounded;
     private bool wasGrounded;
     private bool hitWall;
     private bool blockedForward;
@@ -129,6 +154,8 @@ public class Sonic : MonoBehaviour
     {
         // Remember last frame's ground state
         wasGrounded = grounded;
+
+        grounded = CheckGrounded();
 
         if (quickStepCooldownTimer > 0f)
         {
@@ -295,7 +322,7 @@ public class Sonic : MonoBehaviour
         }
 
         // Turning stuff
-        if (hasInput && !spindashCharging)
+        if (hasInput && !spindashCharging && !homingAttacking)
         {
             bool allowSteer = spindashRolling || !braking;
 
@@ -383,7 +410,7 @@ public class Sonic : MonoBehaviour
 
         }
         // Running
-        else if (hasInput && !spindashCharging)
+        else if (hasInput && !spindashCharging && !homingAttacking)
         {
             if (!blockedForward)
             {
@@ -409,11 +436,22 @@ public class Sonic : MonoBehaviour
             currentSpeed = Mathf.Max(currentSpeed, 0f);
         }
 
-        // Rotate Sonic torwards momentum direction
-        if (momentumDirection.sqrMagnitude > 0.1f)
+        // Sonic Rotation
+        if (hurtFaceEnemy) // Lock Sonic rotation towards enemy if hit
         {
-            Quaternion targetRot = Quaternion.LookRotation(momentumDirection, Vector3.up);                  // Create a rotation that looks in the momentum direction
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 10f * Time.deltaTime);     // Smoothly rotate toward that direction
+            Vector3 faceDir = (hurtEnemyPosition - transform.position);
+            faceDir.y = 0f;
+
+            if (faceDir.sqrMagnitude > 0.001f)
+            {
+                Quaternion targetRot = Quaternion.LookRotation(faceDir.normalized, Vector3.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 15f * Time.deltaTime);
+            }
+        }
+        else if (momentumDirection.sqrMagnitude > 0.1f) // Rotate Sonic torwards momentum direction
+        {
+            Quaternion targetRot = Quaternion.LookRotation(momentumDirection, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 10f * Time.deltaTime);
         }
 
         // Start quick step
@@ -465,6 +503,10 @@ public class Sonic : MonoBehaviour
                 animator.SetBool("Jump", false);
             }
 
+            homingAttackUsed = false;
+            homingAttacking = false;
+            homingTarget = null;
+
             // Small downward force to keep grounded (Stickyness to ground)
             if (velocity.y < 0)
             {
@@ -481,12 +523,11 @@ public class Sonic : MonoBehaviour
                 if (spindashRolling)
                 {
                     spindashRolling = false;
-                        
                 }
 
             }
 
-            if (unroll)
+            if (unroll && !boosting && !stomping)
             {
                 if (spindashRolling)
                 {
@@ -516,6 +557,70 @@ public class Sonic : MonoBehaviour
         // Apply base gravity every frame
         velocity.y += gravity * Time.deltaTime;
 
+        // Homing Attack Stuff
+        if (!grounded && !homingAttacking)
+        {
+            homingTarget = FindHomingTarget();
+        }
+        else if (!homingAttacking)
+        {
+            homingTarget = null;
+        }
+
+        if (!grounded && jumpPressed && !homingAttackUsed && !hurt && !spindashCharging && !spindashRolling)
+        {
+            Transform target = FindHomingTarget();
+
+            Debug.Log(target);
+
+            if (target != null)
+            {
+                homingTarget = target;
+                homingAttacking = true;
+                homingAttackUsed = true;
+
+                // Cancel normal vertical motion
+                velocity.y = 0f;
+            }
+        }
+
+        if (homingAttacking)
+        {
+            if (homingTarget == null)
+            {
+                homingAttacking = false;
+            }
+            else
+            {
+                Vector3 toTarget = homingTarget.position - transform.position;
+                float distance = toTarget.magnitude;
+
+                if (distance <= homingHitDistance)
+                {
+                    homingAttacking = false;
+                    velocity.y = jumpForce * 0.5f;
+
+                    EnemyDeath enemy = homingTarget.GetComponent<EnemyDeath>();
+                    if (enemy != null)
+                    {
+                        enemy.TakeHit();
+                    }
+                    else
+                    {
+                        Destroy(homingTarget.gameObject);
+                    }
+                }
+                else
+                {
+                    Vector3 homingDir = toTarget.normalized;
+
+                    momentumDirection = new Vector3(homingDir.x, 0f, homingDir.z).normalized;
+                    currentSpeed = homingSpeed;
+                    velocity.y = homingDir.y * homingSpeed;
+                }
+            }
+        }
+
         // Stomp Stuff
         bool stompPressed = (Input.GetKeyDown(stompKey) || Input.GetKeyDown(stompButton));
 
@@ -535,8 +640,6 @@ public class Sonic : MonoBehaviour
                     animator.SetBool("Jump", false);
                 }
             }
-
-
         }
 
         if (stomping)
@@ -551,15 +654,17 @@ public class Sonic : MonoBehaviour
 
         CollisionFlags flags = controller.Move(move);                       // Move the CharacterController and get collision info
 
-        grounded = (flags & CollisionFlags.Below) != 0;
+        //grounded = (flags & CollisionFlags.Below) != 0;
+        grounded = CheckGrounded();
         hitWall = (flags & CollisionFlags.Sides) != 0;
 
         // If Sonic was launched by enemy and just landed, stop all movement
-        if (hurt && grounded)
+        if (hurt && grounded && !wasGrounded)
         {
             currentSpeed = 0f;
             velocity.y = -2f;
             hurt = false;
+            hurtFaceEnemy = false;
         }
 
         if (grounded && !wasGrounded && dropDashCharging)
@@ -641,6 +746,54 @@ public class Sonic : MonoBehaviour
         animator.SetBool("Stomping", stomping);
     }
 
+    void OnDrawGizmosSelected()
+    {
+        // Make sure the controller exists
+        if (controller == null)
+            controller = GetComponent<CharacterController>();
+
+        if (controller == null)
+            return;
+
+        Gizmos.color = Color.yellow;
+
+        // Same values used in CheckGrounded()
+        Vector3 origin = transform.position + controller.center;
+        float sphereRadius = controller.radius * 0.9f;
+        float castDistance = (controller.height * 0.5f) - controller.radius + 0.2f;
+
+        // Draw the starting sphere
+        Gizmos.DrawWireSphere(origin, sphereRadius);
+
+        // Draw the ending sphere
+        Vector3 end = origin + Vector3.down * castDistance;
+        Gizmos.DrawWireSphere(end, sphereRadius);
+
+        // Draw a line between them to visualize the cast path
+        Gizmos.DrawLine(origin, end);
+
+        // Homing Attack radius
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, homingRadius);
+    }
+
+    bool CheckGrounded()
+    {
+        Vector3 origin = transform.position + controller.center;
+        float sphereRadius = controller.radius * 0.9f;
+        float castDistance = (controller.height * 0.5f) - controller.radius + 0.2f;
+
+        return Physics.SphereCast(
+            origin,
+            sphereRadius,
+            Vector3.down,
+            out _,
+            castDistance,
+            groundMask,
+            QueryTriggerInteraction.Ignore
+        );
+    }
+
     public void TakeDamage(Vector3 enemyPosition)
     {
         if (invincibilityTimer > 0f)
@@ -648,28 +801,71 @@ public class Sonic : MonoBehaviour
 
         RingCounter ringCounter = GetComponent<RingCounter>();
         if (ringCounter != null)
-        {
             ringCounter.LoseAllRings();
-        }
 
         hurt = true;
+        hurtFaceEnemy = true;
+        hurtEnemyPosition = enemyPosition;
+
         invincibilityTimer = hurtInvincibilityTime;
 
-        // Knockback direction away from enemy
+        // Direction AWAY from enemy (knockback)
         Vector3 knockDir = (transform.position - enemyPosition).normalized;
         knockDir.y = 0f;
 
         if (knockDir.sqrMagnitude < 0.001f)
             knockDir = -transform.forward;
 
-        // Apply horizontal knockback
         momentumDirection = knockDir;
         currentSpeed = hurtKnockbackSpeed;
 
-        // Apply upward pop
+        // small upward pop
         velocity.y = hurtUpwardForce;
 
         //if (animator)
             //animator.SetTrigger("Hurt");
+    }
+
+    Transform FindHomingTarget()
+    {
+        Collider[] hits = Physics.OverlapSphere(transform.position, homingRadius, homingTargetMask, QueryTriggerInteraction.Ignore);
+
+        Transform bestTarget = null;
+        float bestDistance = float.MaxValue;
+
+        foreach (Collider hit in hits)
+        {
+            Vector3 toTarget = hit.transform.position - transform.position;
+            float distance = toTarget.magnitude;
+
+            if (distance > homingRange)
+                continue;
+
+            Vector3 dir = toTarget.normalized;
+
+            // Only allow targets generally in front of Sonic
+            float dot = Vector3.Dot(transform.forward, dir);
+            if (dot < homingForwardDot)
+                continue;
+
+            if (distance < bestDistance)
+            {
+                bestDistance = distance;
+                bestTarget = hit.transform;
+            }
+        }
+
+        //Debug.Log("Hits found: " + hits.Length);
+
+        //if (bestTarget != null)
+        //{
+        //    Debug.Log("Homing target: " + bestTarget.name);
+        //}
+        //else
+        //{
+        //    Debug.Log("No homing target found");
+        //}
+
+        return bestTarget;
     }
 }
