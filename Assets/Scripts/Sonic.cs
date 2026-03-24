@@ -1,5 +1,6 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
+using static DynamicBoneColliderBase;
 
 public class Sonic : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class Sonic : MonoBehaviour
     [Header("Spindash Rolling")]
     public float spindashRollFriction = 8f; // slows roll down over time
     public float spindashExitSpeed = 8f;    // uncurl when speed <= this
-    
+
 
     [Header("Turn Rate Limit (deg/sec)")]
     public float turnRateAtLowSpeed = 720f;   // Degrees per second when slow
@@ -70,19 +71,19 @@ public class Sonic : MonoBehaviour
     public float quickStepCooldown = 0.2f;    // delay before next quick step
 
     [Header("Homing Attack")]
-    public float homingRange = 12f;
     public float homingRadius = 6f;
     public float homingSpeed = 35f;
     public float homingHitDistance = 1.5f;
     public LayerMask homingTargetMask;
     public float homingForwardDot = 0.2f;   // how far in front target must be
+    public float bounceAmount = 30;
     //public KeyCode homingAttackKey = KeyCode.Space;
     //public string homingAttackButton = "joystick button 0";
 
-    private bool homingAttackUsed;
     private bool homingAttacking;
     public Transform homingTarget;
     public Transform CurrentHomingTarget => homingTarget;
+    private bool doubleJump;
 
     [Header("Hurt")]
     public float hurtKnockbackSpeed = 12f;
@@ -108,10 +109,10 @@ public class Sonic : MonoBehaviour
     private float quickStepCooldownTimer;
 
     private CharacterController controller;
-    private Animator animator;
+    public Animator animator;
 
     // Movement
-    private Vector3 velocity;           // Vertical velocity (gravity/jump)
+    public Vector3 velocity;           // Vertical velocity (gravity/jump)
     private float currentSpeed;          // Horizontal speed magnitude
     private Vector3 momentumDirection;   // Direction Sonic is moving
 
@@ -123,31 +124,60 @@ public class Sonic : MonoBehaviour
 
     // Boost
     private float boostMeter;            // Current boost meter value
-    private bool boosting;
+    public bool boosting;
     private bool wasBoosting;
     private bool boostNeedsNewPress;
 
     // Spindash
-    private bool wasSpindashHeld;         
+    private bool wasSpindashHeld;
     private float spindashCharge01;       // Charge amount (0–1)
     private bool spindashCharging;
-    private bool spindashRolling;
+    public bool spindashRolling;
     private bool dropDashCharging;
     private bool spindashNeedsNewPress;
 
     // Stomp
-    private bool stomping;
+    public bool stomping;
 
     // UI
     public float Boost01 => (boostMeterMax <= 0f) ? 0f : (boostMeter / boostMeterMax);
 
+    public bool jumping;
+
+    private float conservedSpeed;
+    private float accelerationStart;
+
+    private bool notPlayed = true;
+
+    public AudioSource voiceAudioSource;
+    public AudioClip[] jumpClips;
+    public AudioClip[] attackClips;
+    public AudioClip[] hurtClips;
+
+    public AudioSource sonicAudioSource;
+    public AudioClip jumpClip;
+    public AudioClip doubleJumpClip;
+    public AudioClip boostClip;
+    public AudioClip homingAttackClip;
+    public AudioClip spindashClip;
+    public AudioClip loseRingClip;
+    public AudioClip dropDashClip;
+    public AudioClip rollClip;
+    public AudioClip stompClip;
+    public AudioClip wooshClip;
+
+    public AudioSource boostWindAudioSource;
+    public AudioSource spindashChargeAudioSource;
+    public AudioSource stompingAudioSource;
+
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
 
         boostMeter = boostMeterMax;                        // Start with full boost
         momentumDirection = transform.forward;             // Initial facing direction
+        accelerationStart = acceleration;
     }
 
     void Update()
@@ -156,6 +186,16 @@ public class Sonic : MonoBehaviour
         wasGrounded = grounded;
 
         grounded = CheckGrounded();
+
+        // Don't accelerate too fast in the air
+        if (!grounded)
+        {
+            acceleration = 3;
+        }
+        else
+        {
+            acceleration = accelerationStart;
+        }
 
         if (quickStepCooldownTimer > 0f)
         {
@@ -191,6 +231,33 @@ public class Sonic : MonoBehaviour
 
         bool spindashReleased = !spindashHeld && wasSpindashHeld; // Detect release
         wasSpindashHeld = spindashHeld;                           // Store for next frame
+
+        if (spindashHeld)
+        {
+            if (notPlayed)
+            {
+                if (grounded && currentSpeed <= 5)
+                {
+                    // Sound Effect
+                    spindashChargeAudioSource.Play();
+                    notPlayed = false;
+                }
+                else if (!grounded)
+                {
+                    // Sound Effect
+                    sonicAudioSource.PlayOneShot(dropDashClip);
+                    notPlayed = false;
+                }
+
+            }
+        }
+        else if (spindashReleased)
+        {
+            // Sound Effect
+            spindashChargeAudioSource.Stop();
+
+            notPlayed = true;
+        }
 
         if (!spindashHeld)
         {
@@ -243,6 +310,12 @@ public class Sonic : MonoBehaviour
             }
             currentSpeed = Mathf.Max(currentSpeed, boostMaxSpeed);          // Instant boost speed
             boostMeter = Mathf.Max(0f, boostMeter - initialBoostDrain);     // Initial boost meter cost
+
+            // Voiceline
+            PlayRandomAttack();
+            // Sound Effect
+            sonicAudioSource.PlayOneShot(boostClip);
+            boostWindAudioSource.Play();
         }
 
         wasBoosting = boosting; // Check for boostStarted
@@ -250,7 +323,11 @@ public class Sonic : MonoBehaviour
         if (boosting)
         {
             boostMeter = Mathf.Max(0f, boostMeter - boostDrainPerSecond * Time.deltaTime);  // Constant boost meter drain
-        } 
+        }
+        else
+        {
+            boostWindAudioSource.Stop();
+        }
 
         float activeMaxSpeed = boosting ? boostMaxSpeed : maxSpeed;                 // If Sonic is boosting, use boost top speed, else use normal top speed
         float activeAcceleration = boosting ? boostAcceleration : acceleration;     // If Sonic is boosting, use boost accel, else use normal accel
@@ -276,7 +353,7 @@ public class Sonic : MonoBehaviour
         bool braking = hasInput && hasMomentum && align < -0.2f;                                    // True if player is holding opposite direction
 
         // Spindash stuff
-        if (grounded && spindashHeld && !spindashNeedsNewPress && !hurt)
+        if (grounded && spindashHeld && !spindashNeedsNewPress && !hurt && currentSpeed <= 5)
         {
             // Set states
             spindashCharging = true;
@@ -298,7 +375,7 @@ public class Sonic : MonoBehaviour
             if (grounded && spindashCharging && spindashReleased)
             {
                 float launchSpeed = Mathf.Lerp(spindashMinSpeed, spindashMaxSpeed, spindashCharge01);   // Convert charge amount into launch speed
-                
+
                 // Launch Sonic forward
                 momentumDirection = transform.forward;
                 currentSpeed = Mathf.Max(currentSpeed, launchSpeed);
@@ -308,6 +385,9 @@ public class Sonic : MonoBehaviour
                 spindashCharging = false;
 
                 spindashCharge01 = 0f;  // Reset charge
+
+                // Sound Effect
+                sonicAudioSource.PlayOneShot(spindashClip);
             }
             else if (!grounded)
             {
@@ -454,7 +534,7 @@ public class Sonic : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 10f * Time.deltaTime);
         }
 
-        // Start quick step
+        // Quick Step Stuff
         if (!quickStepping && quickStepCooldownTimer <= 0f && grounded && !spindashCharging && !spindashRolling && currentSpeed > 10f)
         {
             if (quickStepLeftPressed)
@@ -465,6 +545,9 @@ public class Sonic : MonoBehaviour
 
                 // Move left relative to Sonic's facing direction
                 quickStepVelocity = -transform.right * (quickStepDistance / quickStepDuration);
+
+                // Sound Effect
+                sonicAudioSource.PlayOneShot(wooshClip);
             }
             else if (quickStepRightPressed)
             {
@@ -474,6 +557,8 @@ public class Sonic : MonoBehaviour
 
                 // Move right relative to Sonic's facing direction
                 quickStepVelocity = transform.right * (quickStepDistance / quickStepDuration);
+
+                sonicAudioSource.PlayOneShot(wooshClip);
             }
         }
 
@@ -497,15 +582,11 @@ public class Sonic : MonoBehaviour
 
         if (grounded)
         {
-            // Makes sure to reset Jump Animation State
-            if (animator.GetBool("Jump"))
-            {
-                animator.SetBool("Jump", false);
-            }
-
-            homingAttackUsed = false;
+            // State changes
+            jumping = false;
             homingAttacking = false;
             homingTarget = null;
+            doubleJump = false;
 
             // Small downward force to keep grounded (Stickyness to ground)
             if (velocity.y < 0)
@@ -517,7 +598,12 @@ public class Sonic : MonoBehaviour
             {
                 // Apply jump force
                 velocity.y = jumpForce;
-                animator.SetBool("Jump", true);
+                jumping = true;
+
+                // Voiceclip
+                PlayRandomJump();
+                // Sound Effect
+                sonicAudioSource.PlayOneShot(jumpClip);
 
                 // Cancel spindash if doing it
                 if (spindashRolling)
@@ -536,6 +622,9 @@ public class Sonic : MonoBehaviour
                 else
                 {
                     spindashRolling = true;
+
+                    //Sound Effect
+                    sonicAudioSource.PlayOneShot(rollClip);
                 }
             }
         }
@@ -546,12 +635,12 @@ public class Sonic : MonoBehaviour
             {
                 velocity.y -= lowJumpMultiplier * Time.deltaTime;
             }
-            
+
             // Faster fall for better jump feel
             if (velocity.y < 0)
             {
                 velocity.y += gravity * (fallMultiplier - 1f) * Time.deltaTime;
-            }    
+            }
         }
 
         // Apply base gravity every frame
@@ -567,39 +656,71 @@ public class Sonic : MonoBehaviour
             homingTarget = null;
         }
 
-        if (!grounded && jumpPressed && !homingAttackUsed && !hurt && !spindashCharging && !spindashRolling)
+        // If jump is pressed in the air
+        if (!grounded && jumpPressed && !hurt && !spindashCharging && !spindashRolling)
         {
             Transform target = FindHomingTarget();
 
-            Debug.Log(target);
-
+            // If there is a target
             if (target != null)
             {
+                // Set target and change state to homing attack
                 homingTarget = target;
                 homingAttacking = true;
-                homingAttackUsed = true;
+
+                jumping = false;
 
                 // Cancel normal vertical motion
                 velocity.y = 0f;
+
+                conservedSpeed = currentSpeed;
+
+                // Voiceline
+                PlayRandomAttack();
+                // Sound Effect
+                sonicAudioSource.PlayOneShot(homingAttackClip);
+            }
+            else
+            {
+                // Double jump
+                if (!doubleJump)
+                {
+                    doubleJump = true;
+                    velocity.y = jumpForce;
+
+                    // Voiceline
+                    PlayRandomJump();
+                    //Sound Effect
+                    sonicAudioSource.PlayOneShot(doubleJumpClip);
+                }
             }
         }
 
         if (homingAttacking)
         {
+            // If target stops existing for whatever reason, cancel homing attack
             if (homingTarget == null)
             {
                 homingAttacking = false;
             }
             else
             {
+                // Calculate target distance
                 Vector3 toTarget = homingTarget.position - transform.position;
                 float distance = toTarget.magnitude;
 
+                // If Sonic reaches target
                 if (distance <= homingHitDistance)
                 {
+                    // End homing attack
                     homingAttacking = false;
-                    velocity.y = jumpForce * 0.5f;
+                    // Reset double jump
+                    doubleJump = false;
+                    // Give a small upward force (bounce)
+                    velocity.y = bounceAmount;
+                    currentSpeed = conservedSpeed;
 
+                    // Destroy Enemy
                     EnemyDeath enemy = homingTarget.GetComponent<EnemyDeath>();
                     if (enemy != null)
                     {
@@ -612,8 +733,10 @@ public class Sonic : MonoBehaviour
                 }
                 else
                 {
+                    // Move towards target
                     Vector3 homingDir = toTarget.normalized;
 
+                    // Set movement direction and speed
                     momentumDirection = new Vector3(homingDir.x, 0f, homingDir.z).normalized;
                     currentSpeed = homingSpeed;
                     velocity.y = homingDir.y * homingSpeed;
@@ -625,27 +748,23 @@ public class Sonic : MonoBehaviour
         bool stompPressed = (Input.GetKeyDown(stompKey) || Input.GetKeyDown(stompButton));
 
         // Start stomp only while airborne
-        if (!grounded && stompPressed && !hurt)
+        if (!grounded && stompPressed && !hurt && !stomping)
         {
+            // State changes
+            jumping = false;
             stomping = true;
 
-            // Cancel upward motion immediately and force downward drop
-            velocity.y = stompSpeed;
-
-            // Animation change
-            if (animator)
-            {
-                if (animator.GetBool("Jump"))
-                {
-                    animator.SetBool("Jump", false);
-                }
-            }
+            // Voiceline
+            PlayRandomJump();
+            // Sound Effect
+            stompingAudioSource.Play();
         }
 
         if (stomping)
         {
             // Force a consistent downward velocity (straight down)
             velocity.y = stompSpeed;
+            currentSpeed = 0f;
         }
 
         // Movement
@@ -683,6 +802,9 @@ public class Sonic : MonoBehaviour
 
             // Enter roll state
             spindashRolling = true;
+
+            // Sound Effect
+            sonicAudioSource.PlayOneShot(spindashClip);
         }
 
         // Stop Stomping once grounded
@@ -698,6 +820,10 @@ public class Sonic : MonoBehaviour
             {
                 velocity.y = stompStickDownForce;
             }
+
+            // Sound Effect
+            stompingAudioSource.Stop();
+            sonicAudioSource.PlayOneShot(stompClip);
         }
 
         // Wall detection
@@ -739,11 +865,13 @@ public class Sonic : MonoBehaviour
 
         // Animation stuff
         animator.SetFloat("Speed", speed, 0.1f, Time.deltaTime);
+        animator.SetBool("Jump", jumping || doubleJump);
         animator.SetBool("Grounded", grounded);
         animator.SetBool("Boosting", boosting);
         animator.SetBool("SpindashCharge", spindashCharging || dropDashCharging);
         animator.SetBool("Spindash", spindashRolling);
         animator.SetBool("Stomping", stomping);
+        animator.SetBool("HomingAttacking", homingAttacking);
     }
 
     void OnDrawGizmosSelected()
@@ -796,34 +924,48 @@ public class Sonic : MonoBehaviour
 
     public void TakeDamage(Vector3 enemyPosition)
     {
+        // Ignore damage if invincible
         if (invincibilityTimer > 0f)
+        {
             return;
+        }
 
+        // Lose Rings
         RingCounter ringCounter = GetComponent<RingCounter>();
         if (ringCounter != null)
+        {
             ringCounter.LoseAllRings();
+        }
 
+        // Enter hurt state
         hurt = true;
         hurtFaceEnemy = true;
         hurtEnemyPosition = enemyPosition;
 
+        // Start hurt invincibility
         invincibilityTimer = hurtInvincibilityTime;
 
-        // Direction AWAY from enemy (knockback)
+        // Calculate direction AWAY from enemy (knockback)
         Vector3 knockDir = (transform.position - enemyPosition).normalized;
         knockDir.y = 0f;
 
+        // Safety fallback in case Sonic and enemy are in the same spot (No knockDir)
         if (knockDir.sqrMagnitude < 0.001f)
+        {
             knockDir = -transform.forward;
+        }
 
+        // Apply knockback
         momentumDirection = knockDir;
         currentSpeed = hurtKnockbackSpeed;
 
-        // small upward pop
+        // Small upward pop
         velocity.y = hurtUpwardForce;
 
-        //if (animator)
-            //animator.SetTrigger("Hurt");
+        // Voiceclip
+        PlayRandomHurt();
+        // Sound Effect
+        sonicAudioSource.PlayOneShot(loseRingClip);
     }
 
     Transform FindHomingTarget()
@@ -835,11 +977,9 @@ public class Sonic : MonoBehaviour
 
         foreach (Collider hit in hits)
         {
+            // Get direction and distance from Sonic to target
             Vector3 toTarget = hit.transform.position - transform.position;
             float distance = toTarget.magnitude;
-
-            if (distance > homingRange)
-                continue;
 
             Vector3 dir = toTarget.normalized;
 
@@ -848,6 +988,7 @@ public class Sonic : MonoBehaviour
             if (dot < homingForwardDot)
                 continue;
 
+            // If this target is closer than current best target, update best target
             if (distance < bestDistance)
             {
                 bestDistance = distance;
@@ -867,5 +1008,23 @@ public class Sonic : MonoBehaviour
         //}
 
         return bestTarget;
+    }
+
+    public void PlayRandomJump()
+    {
+        int index = Random.Range(0, jumpClips.Length);
+        voiceAudioSource.PlayOneShot(jumpClips[index]);
+    }
+
+    public void PlayRandomAttack()
+    {
+        int index = Random.Range(0, attackClips.Length);
+        voiceAudioSource.PlayOneShot(attackClips[index]);
+    }
+
+    public void PlayRandomHurt()
+    {
+        int index = Random.Range(0, hurtClips.Length);
+        voiceAudioSource.PlayOneShot(hurtClips[index]);
     }
 }

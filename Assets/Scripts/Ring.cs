@@ -5,6 +5,9 @@ public class Ring : MonoBehaviour
     public float rotationSpeed = 180f;
     public int ringValue = 1;
 
+    public AudioSource audioSource;
+    public AudioClip collectClip;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,6 +29,7 @@ public class Ring : MonoBehaviour
         if (ringCounter != null)
         {
             ringCounter.AddRings(ringValue);
+            audioSource.PlayOneShot(collectClip);
         }
 
         Destroy(gameObject);

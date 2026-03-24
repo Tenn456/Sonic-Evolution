@@ -51,7 +51,7 @@ public class HomingReticleUI : MonoBehaviour
             return;
         }
 
-        Debug.Log("Current homing target: " + target.name);
-        Debug.Log("Screen position: " + screenPos);
+        //Debug.Log("Current homing target: " + target.name);
+        //Debug.Log("Screen position: " + screenPos);
     }
 }
