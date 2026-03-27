@@ -10,10 +10,16 @@ public class HomingReticleUI : MonoBehaviour
     void Start()
     {
         if (cam == null)
+        {
             cam = Camera.main;
-
+        }
+        
+        // Hide at start
         if (reticle != null)
+        {
             reticle.gameObject.SetActive(false);
+        }
+            
     }
 
     void Update()
@@ -39,9 +45,8 @@ public class HomingReticleUI : MonoBehaviour
             return;
         }
 
+        // Show reticle
         reticle.gameObject.SetActive(true);
-
-        // For Screen Space Overlay, direct screen position works
         reticle.position = screenPos;
 
         if (target == null)

@@ -1,5 +1,7 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.Rendering;
 using static DynamicBoneColliderBase;
 
 public class Sonic : MonoBehaviour
@@ -82,6 +84,7 @@ public class Sonic : MonoBehaviour
 
     private bool homingAttacking;
     public Transform homingTarget;
+    private Transform lastHomingTarget;
     public Transform CurrentHomingTarget => homingTarget;
     private bool doubleJump;
 
@@ -149,6 +152,10 @@ public class Sonic : MonoBehaviour
 
     private bool notPlayed = true;
 
+    private bool dropDashNeedsNewPress;
+
+    private float speed;
+
     public AudioSource voiceAudioSource;
     public AudioClip[] jumpClips;
     public AudioClip[] attackClips;
@@ -165,6 +172,8 @@ public class Sonic : MonoBehaviour
     public AudioClip rollClip;
     public AudioClip stompClip;
     public AudioClip wooshClip;
+    public AudioClip lockOnClip;
+    public AudioClip landClip;
 
     public AudioSource boostWindAudioSource;
     public AudioSource spindashChargeAudioSource;
@@ -182,10 +191,21 @@ public class Sonic : MonoBehaviour
 
     void Update()
     {
-        // Remember last frame's ground state
-        wasGrounded = grounded;
-
         grounded = CheckGrounded();
+
+        if (grounded && !wasGrounded)
+        {
+            sonicAudioSource.PlayOneShot(landClip);
+
+            // State changes
+            jumping = false;
+            homingAttacking = false;
+            homingTarget = null;
+            doubleJump = false;
+        }
+
+        // Update wasGrounded
+        wasGrounded = grounded;
 
         // Don't accelerate too fast in the air
         if (!grounded)
@@ -223,7 +243,7 @@ public class Sonic : MonoBehaviour
         }
 
         // Unroll input
-        bool unroll = Input.GetKeyDown(unrollButton) || Input.GetKeyDown(unrollKey);
+        bool unroll = Input.GetKeyDown(unrollButton) || Input.GetKeyDown(unrollKey) && grounded;
 
         // Spindash input
         bool spindashHeld = (Input.GetKey(spindashKey) || Input.GetKey(spindashButton)) && !unroll;
@@ -232,7 +252,7 @@ public class Sonic : MonoBehaviour
         bool spindashReleased = !spindashHeld && wasSpindashHeld; // Detect release
         wasSpindashHeld = spindashHeld;                           // Store for next frame
 
-        if (spindashHeld)
+        if (spindashHeld && !stomping)
         {
             if (notPlayed)
             {
@@ -240,12 +260,6 @@ public class Sonic : MonoBehaviour
                 {
                     // Sound Effect
                     spindashChargeAudioSource.Play();
-                    notPlayed = false;
-                }
-                else if (!grounded)
-                {
-                    // Sound Effect
-                    sonicAudioSource.PlayOneShot(dropDashClip);
                     notPlayed = false;
                 }
 
@@ -259,16 +273,21 @@ public class Sonic : MonoBehaviour
             notPlayed = true;
         }
 
-        if (!spindashHeld)
+        if (!spindashHeld && grounded)
         {
             spindashNeedsNewPress = false;
+            dropDashNeedsNewPress = false;
         }
 
         // Start charging drop dash only while airborne
-        if (!grounded && spindashHeld && !spindashRolling && !spindashCharging)
+        if (!grounded && spindashHeld && !dropDashNeedsNewPress && !spindashRolling && !spindashCharging && !hurt)
         {
             dropDashCharging = true;
             spindashNeedsNewPress = true;
+            dropDashNeedsNewPress = true;
+
+            // Sound Effect
+            sonicAudioSource.PlayOneShot(dropDashClip);
         }
 
         // If player releases button before landing, cancel drop dash
@@ -548,6 +567,9 @@ public class Sonic : MonoBehaviour
 
                 // Sound Effect
                 sonicAudioSource.PlayOneShot(wooshClip);
+
+                // Voiceclip
+                PlayRandomJump();
             }
             else if (quickStepRightPressed)
             {
@@ -558,7 +580,11 @@ public class Sonic : MonoBehaviour
                 // Move right relative to Sonic's facing direction
                 quickStepVelocity = transform.right * (quickStepDistance / quickStepDuration);
 
+                // Sound Effect
                 sonicAudioSource.PlayOneShot(wooshClip);
+
+                // Voiceclip
+                PlayRandomJump();
             }
         }
 
@@ -582,16 +608,10 @@ public class Sonic : MonoBehaviour
 
         if (grounded)
         {
-            // State changes
-            jumping = false;
-            homingAttacking = false;
-            homingTarget = null;
-            doubleJump = false;
-
             // Small downward force to keep grounded (Stickyness to ground)
             if (velocity.y < 0)
             {
-                velocity.y = -2f;
+                velocity.y = -15f;
             }
 
             if (jumpPressed && !hurt)
@@ -619,7 +639,7 @@ public class Sonic : MonoBehaviour
                 {
                     spindashRolling = false;
                 }
-                else
+                else if (!spindashRolling && currentSpeed > spindashExitSpeed + 5)
                 {
                     spindashRolling = true;
 
@@ -637,7 +657,7 @@ public class Sonic : MonoBehaviour
             }
 
             // Faster fall for better jump feel
-            if (velocity.y < 0)
+            if (jumping && velocity.y < 0)
             {
                 velocity.y += gravity * (fallMultiplier - 1f) * Time.deltaTime;
             }
@@ -650,14 +670,25 @@ public class Sonic : MonoBehaviour
         if (!grounded && !homingAttacking)
         {
             homingTarget = FindHomingTarget();
+
+            if (homingTarget != lastHomingTarget)
+            {
+                // Sound Effect
+                sonicAudioSource.PlayOneShot(lockOnClip);
+            }
+
+            lastHomingTarget = homingTarget;
         }
         else if (!homingAttacking)
         {
             homingTarget = null;
+            lastHomingTarget = null;
         }
 
+
+
         // If jump is pressed in the air
-        if (!grounded && jumpPressed && !hurt && !spindashCharging && !spindashRolling)
+        if (!grounded && jumpPressed && !hurt && !spindashCharging)
         {
             Transform target = FindHomingTarget();
 
@@ -718,7 +749,7 @@ public class Sonic : MonoBehaviour
                     doubleJump = false;
                     // Give a small upward force (bounce)
                     velocity.y = bounceAmount;
-                    currentSpeed = conservedSpeed;
+                    currentSpeed = 5f;
 
                     // Destroy Enemy
                     EnemyDeath enemy = homingTarget.GetComponent<EnemyDeath>();
@@ -728,7 +759,7 @@ public class Sonic : MonoBehaviour
                     }
                     else
                     {
-                        Destroy(homingTarget.gameObject);
+                        //Destroy(homingTarget.gameObject);
                     }
                 }
                 else
@@ -800,6 +831,8 @@ public class Sonic : MonoBehaviour
             // Keep this true so holding the button does NOT start a grounded spindash
             spindashNeedsNewPress = true;
 
+            dropDashNeedsNewPress = true;
+
             // Enter roll state
             spindashRolling = true;
 
@@ -853,7 +886,7 @@ public class Sonic : MonoBehaviour
 
 
 
-        float speed = hv.magnitude;
+        speed = hv.magnitude;
 
         // Force stop boost if Sonic slows down too much
         if (boosting && speed < boostCancelSpeed)
@@ -862,7 +895,10 @@ public class Sonic : MonoBehaviour
             wasBoosting = false;
             boostNeedsNewPress = true;
         }
+    }
 
+    private void FixedUpdate()
+    {
         // Animation stuff
         animator.SetFloat("Speed", speed, 0.1f, Time.deltaTime);
         animator.SetBool("Jump", jumping || doubleJump);
