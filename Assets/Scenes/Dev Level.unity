@@ -522,7 +522,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (65)
@@ -588,7 +588,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (44)
@@ -2044,7 +2044,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (9)
@@ -2105,7 +2105,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (20)
@@ -3569,7 +3569,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (5)
@@ -4152,7 +4152,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (11)
@@ -4378,7 +4378,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (22)
@@ -4454,7 +4454,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (82)
@@ -4944,7 +4944,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (84)
@@ -5005,7 +5005,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (24)
@@ -5153,6 +5153,7 @@ RectTransform:
   - {fileID: 395354464}
   - {fileID: 582125088}
   - {fileID: 720816466}
+  - {fileID: 1992414738}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5569,7 +5570,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (8)
@@ -5982,7 +5983,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (59)
@@ -6048,7 +6049,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (28)
@@ -6466,7 +6467,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (50)
@@ -6889,7 +6890,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (33)
@@ -7069,7 +7070,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (67)
@@ -7482,7 +7483,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (62)
@@ -7543,7 +7544,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (18)
@@ -7646,7 +7647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce283a9d3ea049e4f9ed1126e32ea237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sonic: {fileID: 743589681}
+  sonic: {fileID: 2696254455240221233}
   reticle: {fileID: 1490928051}
   cam: {fileID: 1659946372}
   worldOffset: {x: 0, y: 1, z: 0}
@@ -7720,7 +7721,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (29)
@@ -11802,7 +11803,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (47)
@@ -11863,7 +11864,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (53)
@@ -12007,7 +12008,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (21)
@@ -12425,7 +12426,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (45)
@@ -13903,7 +13904,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (43)
@@ -16086,7 +16087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6926494402cf4439f955550f87157a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sonic: {fileID: 743589681}
+  sonic: {fileID: 2696254455240221233}
   boostFill: {fileID: 582125086}
   smooth: 12
 --- !u!114 &582125086
@@ -16593,7 +16594,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (23)
@@ -18043,7 +18044,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (85)
@@ -18527,7 +18528,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (51)
@@ -18815,7 +18816,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (86)
@@ -18972,7 +18973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ccf4b732a284ce4ea4b2a8607cbd586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ringCounter: {fileID: 1967047037}
+  ringCounter: {fileID: 4718863664649516647}
   ringText: {fileID: 720816468}
 --- !u!114 &720816468
 MonoBehaviour:
@@ -19436,7 +19437,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (75)
@@ -19662,7 +19663,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (60)
@@ -19728,7 +19729,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (58)
@@ -19943,17 +19944,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!114 &743589681 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2696254454376681021, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-  m_PrefabInstance: {fileID: 1434954764}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38d560b7e1d3e8e4dbc4b0912e1b9bea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &748194351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19965,7 +19955,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (13)
@@ -20483,7 +20473,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (37)
@@ -20888,7 +20878,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (57)
@@ -21338,7 +21328,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (54)
@@ -21751,7 +21741,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (61)
@@ -22344,7 +22334,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (63)
@@ -23421,8 +23411,8 @@ BoxCollider:
   m_Center: {x: 0.007953644, y: 0.16754839, z: -0.015232084}
 --- !u!4 &953501730 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 7723010206386808305, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-  m_PrefabInstance: {fileID: 1434954764}
+  m_CorrespondingSourceObject: {fileID: 8081806804600922891, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+  m_PrefabInstance: {fileID: 7785759959806796217}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &953806141 stripped
 GameObject:
@@ -23735,7 +23725,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (87)
@@ -23971,7 +23961,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (42)
@@ -24463,7 +24453,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (27)
@@ -24588,7 +24578,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (17)
@@ -24979,7 +24969,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (34)
@@ -25040,7 +25030,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (74)
@@ -25101,7 +25091,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (14)
@@ -25327,7 +25317,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (68)
@@ -28518,7 +28508,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (72)
@@ -29017,7 +29007,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (2)
@@ -30239,7 +30229,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (40)
@@ -31004,7 +30994,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (70)
@@ -31065,7 +31055,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (38)
@@ -42827,7 +42817,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (71)
@@ -43084,7 +43074,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (66)
@@ -43310,7 +43300,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (52)
@@ -43371,7 +43361,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (32)
@@ -43784,7 +43774,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (73)
@@ -43845,7 +43835,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (79)
@@ -43906,7 +43896,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (30)
@@ -44137,7 +44127,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (83)
@@ -44901,115 +44891,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!1001 &1434954764
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2370202878645958555, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: m_Name
-      value: Sonic Root
-      objectReference: {fileID: 0}
-    - target: {fileID: 2696254454376681021, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: brake
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 2696254454376681021, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: gravity
-      value: -25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2696254454376681021, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: landClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 68c307c850b8a6940976885bef409350, type: 3}
-    - target: {fileID: 2696254454376681021, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: jumpForce
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2696254454376681021, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: deceleration
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2696254454376681021, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: homingRadius
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2696254454376681021, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: boostMaxSpeed
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 2696254454376681021, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: boostTurnRate
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 2696254454376681021, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: homingHitDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2696254454376681021, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: turnRateAtHighSpeed
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2696254454376681021, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: rollTurnRateAtHighSpeed
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 5211537858950454488, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 763.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5211537858950454488, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 5211537858950454488, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 812.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5211537858950454488, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5211537858950454488, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5211537858950454488, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5211537858950454488, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5211537858950454488, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5211537858950454488, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5211537858950454488, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7723010206395796433, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: m_UpdateMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7723010206395796433, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-      propertyPath: m_CullingMode
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
 --- !u!43 &1436806214
 Mesh:
   m_ObjectHideFlags: 0
@@ -46244,7 +46125,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (3)
@@ -46635,7 +46516,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (80)
@@ -47130,7 +47011,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (15)
@@ -47766,6 +47647,53 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1545788265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1545788267}
+  - component: {fileID: 1545788266}
+  m_Layer: 0
+  m_Name: DeathManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1545788266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545788265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeb277ab5231cd241b4166a2920c115f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeImage: {fileID: 1992414736}
+  delay: 2
+  fadeDuration: 1
+--- !u!4 &1545788267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545788265}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 603.7, y: 0.7599127, z: 475.37054}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1549599905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47777,7 +47705,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (25)
@@ -47832,6 +47760,274 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4177903199981218689, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
   m_PrefabInstance: {fileID: 326531495}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1564886026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1564886032}
+  - component: {fileID: 1564886031}
+  - component: {fileID: 1564886030}
+  - component: {fileID: 1564886029}
+  - component: {fileID: 1564886028}
+  - component: {fileID: 1564886027}
+  m_Layer: 0
+  m_Name: DriftCam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1564886027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564886026}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89875cdc57c54474a8a74efd9b2a3b5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScanRecursively: 1
+  SuppressInputWhileBlending: 1
+  IgnoreTimeScale: 0
+  m_ControllerManager:
+    Controllers:
+    - Name: Look Orbit X
+      Owner: {fileID: 1564886030}
+      Enabled: 1
+      Input:
+        InputAction: {fileID: -5630151704836100654, guid: 1d6e640e716dc4ff6989b73d02023f2b, type: 3}
+        Gain: 1
+        LegacyInput: 
+        LegacyGain: 1
+        CancelDeltaTime: 0
+      InputValue: 0
+      Driver:
+        AccelTime: 0.2
+        DecelTime: 0.2
+    - Name: Look Orbit Y
+      Owner: {fileID: 1564886030}
+      Enabled: 1
+      Input:
+        InputAction: {fileID: -5630151704836100654, guid: 1d6e640e716dc4ff6989b73d02023f2b, type: 3}
+        Gain: -1
+        LegacyInput: 
+        LegacyGain: 1
+        CancelDeltaTime: 0
+      InputValue: 0
+      Driver:
+        AccelTime: 0.2
+        DecelTime: 0.2
+    - Name: Orbit Scale
+      Owner: {fileID: 1564886030}
+      Enabled: 1
+      Input:
+        InputAction: {fileID: 5082991133974614888, guid: 1d6e640e716dc4ff6989b73d02023f2b, type: 3}
+        Gain: -1
+        LegacyInput: 
+        LegacyGain: 1
+        CancelDeltaTime: 0
+      InputValue: 0
+      Driver:
+        AccelTime: 0
+        DecelTime: 0
+  PlayerIndex: -1
+  AutoEnableInputs: 1
+--- !u!114 &1564886028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564886026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe43d662878a7c43bcd44d43c9e2094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 9
+  IgnoreTag: 
+  TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  MinimumDistanceFromTarget: 1
+  AvoidObstacles:
+    Enabled: 1
+    DistanceLimit: 0
+    MinimumOcclusionTime: 0
+    CameraRadius: 0.4
+    UseFollowTarget:
+      Enabled: 0
+      YOffset: 0
+    Strategy: 0
+    MaximumEffort: 4
+    SmoothingTime: 0
+    Damping: 0.4
+    DampingWhenOccluded: 0.2
+  ShotQualityEvaluation:
+    Enabled: 0
+    OptimalDistance: 10
+    NearLimit: 5
+    FarLimit: 30
+    MaxQualityBoost: 0.2
+--- !u!114 &1564886029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564886026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38bda98361e1de48a4ca2bd86ea3c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Composition:
+    ScreenPosition: {x: 0, y: 0}
+    DeadZone:
+      Enabled: 0
+      Size: {x: 0.2, y: 0.2}
+    HardLimits:
+      Enabled: 0
+      Size: {x: 0.8, y: 0.8}
+      Offset: {x: 0, y: 0}
+  CenterOnActivate: 0
+  TargetOffset: {x: 0, y: 0.88, z: 0}
+  Damping: {x: 0.05, y: 0.05}
+  Lookahead:
+    Enabled: 1
+    Time: 0
+    Smoothing: 0
+    IgnoreY: 0
+--- !u!114 &1564886030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564886026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5d7c088409d9a40b7b09aa707777f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetOffset: {x: 0, y: 0, z: 0}
+  TrackerSettings:
+    BindingMode: 1
+    PositionDamping: {x: 0, y: 0, z: 0}
+    AngularDampingMode: 0
+    RotationDamping: {x: 1, y: 1, z: 1}
+    QuaternionDamping: 1
+  OrbitStyle: 0
+  Radius: 3
+  Orbits:
+    Top:
+      Radius: 2
+      Height: 5
+    Center:
+      Radius: 4
+      Height: 2.25
+    Bottom:
+      Radius: 2.5
+      Height: 0.1
+    SplineCurvature: 0.5
+  RecenteringTarget: 2
+  HorizontalAxis:
+    Value: 0
+    Center: 0
+    Range: {x: -180, y: 180}
+    Wrap: 1
+    Recentering:
+      Enabled: 0
+      Wait: 1
+      Time: 2
+    Restrictions: 0
+  VerticalAxis:
+    Value: 17.5
+    Center: 17.5
+    Range: {x: -10, y: 45}
+    Wrap: 0
+    Recentering:
+      Enabled: 0
+      Wait: 1
+      Time: 2
+    Restrictions: 0
+  RadialAxis:
+    Value: 1
+    Center: 1
+    Range: {x: 1, y: 1}
+    Wrap: 0
+    Recentering:
+      Enabled: 0
+      Wait: 1
+      Time: 2
+    Restrictions: 0
+--- !u!114 &1564886031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564886026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Priority:
+    Enabled: 0
+    m_Value: 0
+  OutputChannel: 1
+  StandbyUpdate: 2
+  m_StreamingVersion: 20241001
+  m_LegacyPriority: 0
+  Target:
+    TrackingTarget: {fileID: 6831094597495019622}
+    LookAtTarget: {fileID: 0}
+    CustomLookAtTarget: 0
+  Lens:
+    FieldOfView: 50
+    OrthographicSize: 5
+    NearClipPlane: 0.3
+    FarClipPlane: 1000
+    Dutch: 0
+    ModeOverride: 0
+    PhysicalProperties:
+      GateFit: 2
+      SensorSize: {x: 21.946, y: 16.002}
+      LensShift: {x: 0, y: 0}
+      FocusDistance: 10
+      Iso: 200
+      ShutterSpeed: 0.005
+      Aperture: 16
+      BladeCount: 5
+      Curvature: {x: 2, y: 11}
+      BarrelClipping: 0.25
+      Anamorphism: 0
+  BlendHint: 0
+--- !u!4 &1564886032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564886026}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0038650553, y: 0.000000029802106, z: -1.1518767e-10, w: 0.9999926}
+  m_LocalPosition: {x: 598.4668, y: 1.5801175, z: 468.26773}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1565059990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47843,7 +48039,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (39)
@@ -47904,7 +48100,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (7)
@@ -49836,11 +50032,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1461751103}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1631249680 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 7131526678293957948, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-  m_PrefabInstance: {fileID: 1434954764}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1633483599 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4177903199981218689, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
@@ -49857,7 +50048,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (26)
@@ -50330,6 +50521,7 @@ GameObject:
   - component: {fileID: 1659946376}
   - component: {fileID: 1659946375}
   - component: {fileID: 1659946374}
+  - component: {fileID: 1659946377}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -50404,8 +50596,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1659946370}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.014558292, y: 0.70692074, z: 0.014556803, w: 0.7069931}
-  m_LocalPosition: {x: 759.1315, y: 1.663529, z: 812.2999}
+  m_LocalRotation: {x: 0.03028618, y: -0.0007584736, z: 0.000022981816, w: 0.999541}
+  m_LocalPosition: {x: 598.4769, y: 2.7829406, z: 464.45285}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -50435,7 +50627,7 @@ MonoBehaviour:
     DefaultMode: 2
   DefaultBlend:
     Style: 1
-    Time: 2
+    Time: 0.5
     CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -50472,6 +50664,23 @@ MonoBehaviour:
   keyboardRecenterKey: 114
   recenterButton: joystick button 11
   recenterSpeed: 700
+--- !u!114 &1659946377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659946370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1daa8e8481719c419a6873418ea7c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sonic: {fileID: 2696254455240221233}
+  normalCam: {fileID: 1877064106}
+  powerDriftCam: {fileID: 1564886031}
+  normalPriority: 10
+  driftPriority: 20
 --- !u!1001 &1663062114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50483,7 +50692,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (41)
@@ -50544,7 +50753,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (35)
@@ -50780,7 +50989,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (12)
@@ -50841,7 +51050,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (55)
@@ -51237,7 +51446,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (69)
@@ -51298,7 +51507,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (76)
@@ -51359,7 +51568,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (78)
@@ -51472,7 +51681,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (6)
@@ -51538,7 +51747,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (10)
@@ -51769,7 +51978,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (48)
@@ -53283,7 +53492,7 @@ GameObject:
   - component: {fileID: 1877064110}
   - component: {fileID: 1877064109}
   m_Layer: 0
-  m_Name: CinemachineCamera
+  m_Name: NormalCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53304,12 +53513,12 @@ MonoBehaviour:
   TargetOffset: {x: 0, y: 0, z: 0}
   TrackerSettings:
     BindingMode: 5
-    PositionDamping: {x: 1, y: 1, z: 1}
+    PositionDamping: {x: 0.5, y: 0.5, z: 0.5}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
   OrbitStyle: 0
-  Radius: 5
+  Radius: 7
   Orbits:
     Top:
       Radius: 2
@@ -53372,7 +53581,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 953501730}
+    TrackingTarget: {fileID: 6831094597495019622}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -53403,8 +53612,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877064103}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.014558292, y: 0.70692074, z: 0.014556802, w: 0.7069931}
-  m_LocalPosition: {x: 759.1315, y: 1.663529, z: 812.2999}
+  m_LocalRotation: {x: 0.030286182, y: -0.0007584736, z: 0.000022981818, w: 0.999541}
+  m_LocalPosition: {x: 598.4769, y: 2.7829406, z: 464.45285}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -54489,7 +54698,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (46)
@@ -54560,7 +54769,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (77)
@@ -55143,7 +55352,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (56)
@@ -56319,7 +56528,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (16)
@@ -56380,7 +56589,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring
@@ -56430,17 +56639,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
---- !u!114 &1967047037 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4718863663382469227, guid: ee3a45debe485e44fa2979f7e6f530eb, type: 3}
-  m_PrefabInstance: {fileID: 1434954764}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 150a0aac04d1b5f44a405600efb7afc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1967288995
 GameObject:
   m_ObjectHideFlags: 0
@@ -56913,7 +57111,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (49)
@@ -57400,6 +57598,81 @@ Transform:
   - {fileID: 134607370}
   m_Father: {fileID: 617429919}
   m_LocalEulerAnglesHint: {x: 0, y: -50.698, z: 0}
+--- !u!1 &1992414735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1992414738}
+  - component: {fileID: 1992414737}
+  - component: {fileID: 1992414736}
+  m_Layer: 5
+  m_Name: Black Screen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1992414736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992414735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1992414737
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992414735}
+  m_CullTransparentMesh: 1
+--- !u!224 &1992414738
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992414735}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 307133608}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2035168764
 GameObject:
   m_ObjectHideFlags: 0
@@ -57465,7 +57738,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (19)
@@ -57526,7 +57799,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (1)
@@ -57939,7 +58212,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (36)
@@ -58470,7 +58743,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (4)
@@ -58883,7 +59156,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (31)
@@ -58949,7 +59222,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (64)
@@ -59261,7 +59534,7 @@ PrefabInstance:
     - target: {fileID: 2255033505798616548, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 1631249680}
+      objectReference: {fileID: 7131526679006634288}
     - target: {fileID: 2536092213804298339, guid: 5b9694348e871cf4781502cc24721dcf, type: 3}
       propertyPath: m_Name
       value: Ring (81)
@@ -59476,6 +59749,119 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &2696254455240221233 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8527728565114513316, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+  m_PrefabInstance: {fileID: 7785759959806796217}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d560b7e1d3e8e4dbc4b0912e1b9bea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4718863664649516647 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 410373923476086866, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+  m_PrefabInstance: {fileID: 7785759959806796217}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 150a0aac04d1b5f44a405600efb7afc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &6831094597495019622 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6725894474562309653, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+  m_PrefabInstance: {fileID: 7785759959806796217}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &7131526679006634288 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2563275600915611883, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+  m_PrefabInstance: {fileID: 7785759959806796217}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7785759959806796217
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 410373923476086866, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+      propertyPath: rings
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1795128861667659034, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+      propertyPath: sonic
+      value: 
+      objectReference: {fileID: 2696254455240221233}
+    - target: {fileID: 3018149012015710629, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 598.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018149012015710629, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.014
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018149012015710629, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 471.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018149012015710629, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018149012015710629, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018149012015710629, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018149012015710629, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018149012015710629, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018149012015710629, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018149012015710629, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569649060939427371, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+      propertyPath: m_Name
+      value: Sonic Root
+      objectReference: {fileID: 0}
+    - target: {fileID: 8527728565114513316, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+      propertyPath: deathClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 14fd2ef6af3f3af45b2323dc344355f4, type: 3}
+    - target: {fileID: 8527728565114513316, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+      propertyPath: ringDropForce
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8527728565114513316, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+      propertyPath: ringUpwardForce
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8527728565114513316, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
+      propertyPath: sonicAudioSource
+      value: 
+      objectReference: {fileID: 7131526679006634288}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a99fd806124b5dd49a0a3e5e4ce3a5cf, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -59483,9 +59869,10 @@ SceneRoots:
   - {fileID: 1659946373}
   - {fileID: 110937755}
   - {fileID: 1877064107}
+  - {fileID: 1564886032}
   - {fileID: 307133608}
   - {fileID: 755859122}
-  - {fileID: 1434954764}
+  - {fileID: 7785759959806796217}
   - {fileID: 356772356}
   - {fileID: 1461751103}
   - {fileID: 617429919}
@@ -59493,3 +59880,4 @@ SceneRoots:
   - {fileID: 1753550997}
   - {fileID: 1621959061}
   - {fileID: 959370193}
+  - {fileID: 1545788267}

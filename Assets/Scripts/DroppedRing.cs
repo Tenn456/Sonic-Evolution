@@ -1,20 +1,38 @@
 using UnityEngine;
 
-public class Ring : MonoBehaviour
+public class DroppedRing : MonoBehaviour
 {
     public float rotationSpeed = 180f;
     public int ringValue = 1;
 
+    public float pickupDelay = 0.75f;
+
+    private bool canBePickedUp;
+
     public AudioClip collectClip;
 
-    void Update()
+    void Start()
+    {
+        canBePickedUp = false;
+        Invoke(nameof(EnablePickup), pickupDelay);
+    }
+
+    private void Update()
     {
         // Rotate the ring around its Y axis
         transform.Rotate(0f, rotationSpeed * Time.deltaTime, 0f);
     }
 
+    void EnablePickup()
+    {
+        canBePickedUp = true;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        if (!canBePickedUp)
+            return;
+
         if (!other.CompareTag("Player"))
             return;
 
