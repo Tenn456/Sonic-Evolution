@@ -48,7 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 180
   ringValue: 1
-  audioSource: {fileID: 0}
   collectClip: {fileID: 8300000, guid: 430c9ad5ccfffa44983243f2d4b4f932, type: 3}
 --- !u!135 &8324981961871912495
 SphereCollider:
@@ -69,7 +68,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.37
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4992934340400246459
 GameObject:

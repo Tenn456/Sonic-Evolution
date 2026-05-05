@@ -8,8 +8,13 @@ public class CameraSwitch : MonoBehaviour
     public CinemachineCamera normalCam;
     public CinemachineCamera powerDriftCam;
 
-    public int normalPriority = 10;
-    public int driftPriority = 20;
+    public int activePriority = 20;
+    public int inactivePriority = 10;
+
+    void Awake()
+    {
+        SetNormalCam();
+    }
 
     void LateUpdate()
     {
@@ -17,14 +22,20 @@ public class CameraSwitch : MonoBehaviour
             return;
 
         if (sonic.PowerDrifting)
-        {
-            normalCam.Priority = normalPriority;
-            powerDriftCam.Priority = driftPriority;
-        }
+            SetDriftCam();
         else
-        {
-            normalCam.Priority = driftPriority;
-            powerDriftCam.Priority = normalPriority;
-        }
+            SetNormalCam();
+    }
+
+    void SetNormalCam()
+    {
+        normalCam.Priority = activePriority;
+        powerDriftCam.Priority = inactivePriority;
+    }
+
+    void SetDriftCam()
+    {
+        normalCam.Priority = inactivePriority;
+        powerDriftCam.Priority = activePriority;
     }
 }

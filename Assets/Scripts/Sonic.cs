@@ -1,8 +1,5 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.Rendering;
-using static DynamicBoneColliderBase;
+﻿using UnityEngine;
+using Unity.Cinemachine;
 
 public class Sonic : MonoBehaviour
 {
@@ -132,6 +129,10 @@ public class Sonic : MonoBehaviour
 
     public bool grounded;
 
+    public TrailRenderer homingTrail;
+    public TrailRenderer stompTrail;
+    public TrailRenderer boostTrail;
+
     private bool hurt;
     private float invincibilityTimer;
     private bool hurtFaceEnemy;
@@ -165,9 +166,9 @@ public class Sonic : MonoBehaviour
     // Spindash
     private bool wasSpindashHeld;
     private float spindashCharge01;       // Charge amount (0–1)
-    private bool spindashCharging;
+    public bool spindashCharging;
     public bool spindashRolling;
-    private bool dropDashCharging;
+    public bool dropDashCharging;
     private bool spindashNeedsNewPress;
 
     // Stomp
@@ -212,6 +213,16 @@ public class Sonic : MonoBehaviour
     public AudioSource spindashChargeAudioSource;
     public AudioSource stompingAudioSource;
     public AudioSource driftAudioSource;
+
+    public PostProcessManager post;
+
+    public CinemachineCamera cam;
+
+    public float normalFov = 60f;
+    public float boostFov = 75f;
+    public float fovTransitionTime = 5f;
+
+    public bool invincible;
 
 
     void Start()
@@ -353,6 +364,9 @@ public class Sonic : MonoBehaviour
             currentSpeed = Mathf.Max(currentSpeed, boostMaxSpeed);          // Instant boost speed
             boostMeter = Mathf.Max(0f, boostMeter - initialBoostDrain);     // Initial boost meter cost
 
+            boostTrail.Clear();
+            boostTrail.emitting = true;
+
             // Voiceline
             PlayRandomAttack();
             // Sound Effect
@@ -362,13 +376,25 @@ public class Sonic : MonoBehaviour
 
         wasBoosting = boosting; // Check for boostStarted
 
+        float current = cam.Lens.FieldOfView;
+
         if (boosting)
         {
             boostMeter = Mathf.Max(0f, boostMeter - boostDrainPerSecond * Time.deltaTime);  // Constant boost meter drain
+
+            // Post Processing
+            post.Boost();
+            cam.Lens.FieldOfView = Mathf.Lerp(current, boostFov, Time.deltaTime * fovTransitionTime);
         }
         else
         {
             boostWindAudioSource.Stop();
+
+            boostTrail.emitting = false;
+
+            // Post Processing
+            post.Normal();
+            cam.Lens.FieldOfView = Mathf.Lerp(current, normalFov, Time.deltaTime * fovTransitionTime);
         }
 
         bool hasMomentum = momentumDirection.sqrMagnitude > 0.001f;
@@ -465,6 +491,11 @@ public class Sonic : MonoBehaviour
                 // Get two instances of direction
                 powerDriftMoveDirection = momentumDirection.normalized;
                 powerDriftFacingDirection = momentumDirection.normalized;
+
+                if (spindashRolling)
+                {
+                    spindashRolling = false; 
+                }
                 
                 // Sound effect
                 driftAudioSource.Play();
@@ -859,6 +890,10 @@ public class Sonic : MonoBehaviour
 
                 jumping = false;
 
+                // Enable trail renderer
+                homingTrail.Clear();
+                homingTrail.emitting = true;
+
                 // Cancel normal vertical motion
                 velocity.y = 0f;
 
@@ -893,6 +928,8 @@ public class Sonic : MonoBehaviour
                 homingAttacking = false;
                 currentSpeed = 0;
 
+                homingTrail.emitting = false;
+
                 return;
             }
 
@@ -905,6 +942,8 @@ public class Sonic : MonoBehaviour
                 homingAttacking = false;
                 currentSpeed = 0;
 
+                homingTrail.emitting = false;
+
                 return;
             }
 
@@ -913,6 +952,8 @@ public class Sonic : MonoBehaviour
             {
                 homingAttacking = false;
                 currentSpeed = 0;
+
+                homingTrail.emitting = false;
             }
             else
             {
@@ -931,10 +972,13 @@ public class Sonic : MonoBehaviour
                     velocity.y = bounceAmount;
                     currentSpeed = 5f;
 
+                    homingTrail.emitting = false;
+
                     // Destroy Enemy
                     EnemyDeath enemy = homingTarget.GetComponent<EnemyDeath>();
                     if (enemy != null)
                     {
+                        GainBoost(10f);
                         enemy.TakeHit();
                     }
                     else
@@ -964,6 +1008,10 @@ public class Sonic : MonoBehaviour
             // State changes
             jumping = false;
             stomping = true;
+
+            // Trail
+            stompTrail.Clear();
+            stompTrail.emitting = true;
 
             // Voiceline
             PlayRandomJump();
@@ -1032,6 +1080,8 @@ public class Sonic : MonoBehaviour
         {
             stomping = false;
 
+            stompTrail.emitting = false;
+
             // Kill momentum
             currentSpeed = 0f;
 
@@ -1096,6 +1146,15 @@ public class Sonic : MonoBehaviour
             boosting = false;
             wasBoosting = false;
             boostNeedsNewPress = true;
+        }
+
+        if (boosting || jumping || spindashCharging || spindashRolling || dropDashCharging || stomping || invincibilityTimer > 0f || doubleJump)
+        {
+            invincible = true;
+        }
+        else
+        {
+            invincible = false;
         }
     }
 
@@ -1166,7 +1225,7 @@ public class Sonic : MonoBehaviour
     public void TakeDamage(Vector3 enemyPosition)
     {
         // Ignore damage if invincible
-        if (invincibilityTimer > 0f)
+        if (invincible)
         {
             return;
         }
@@ -1336,6 +1395,12 @@ public class Sonic : MonoBehaviour
         }
 
         return bestTarget;
+    }
+
+    public void GainBoost(float amount)
+    {
+        boostMeter += amount;
+        boostMeter = Mathf.Clamp(boostMeter, 0f, boostMeterMax);
     }
 
     public void PlayRandomJump()

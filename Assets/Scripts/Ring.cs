@@ -18,6 +18,11 @@ public class Ring : MonoBehaviour
         if (!other.CompareTag("Player"))
             return;
 
+        Sonic sonic = other.GetComponent<Sonic>();
+
+        if (sonic.dead)
+            return;
+
         RingCounter ringCounter = other.GetComponent<RingCounter>();
         AudioSource audioSource = other.transform.Find("Sonic Audio").GetComponent<AudioSource>();
 
@@ -26,6 +31,8 @@ public class Ring : MonoBehaviour
             ringCounter.AddRings(ringValue);
             audioSource.PlayOneShot(collectClip);
         }
+
+        sonic.GainBoost(5f);
 
         Destroy(gameObject);
     }

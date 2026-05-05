@@ -3,6 +3,7 @@ using UnityEngine;
 public class RingCounter : MonoBehaviour
 {
     public int rings = 0;
+    public int redRings = 0;
 
     public void AddRings(int amount)
     {
@@ -13,5 +14,11 @@ public class RingCounter : MonoBehaviour
     public void LoseAllRings()
     {
         rings = 0;
+    }
+
+    public void AddRedRings(int amount)
+    {
+        redRings += amount;
+        Debug.Log("Red Rings: " + redRings);
     }
 }
